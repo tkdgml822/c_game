@@ -195,6 +195,7 @@
     <ClCompile Include="main.c" />
     <ClCompile Include="MyVariable.c" />
     <ClCompile Include="ReadyScreen.c" />
+    <ClCompile Include="Render.c" />
     <ClCompile Include="ResultScreen.c" />
     <ClCompile Include="RunningScreen.c" />
     <ClCompile Include="SuccessScreen.c" />
