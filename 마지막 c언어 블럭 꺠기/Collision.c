@@ -8,13 +8,13 @@ int Collision(int nX, int nY) { // 공의 x, 공의 y
 		if (g_sBlock[i].nLife == 1) {									// 벽돌의 체력이 1일때
 			if (g_sBlock[i].nY == nY) {									// 해당 벽돌과 공의 위치를 비교하여 충돌 여부를 판단
 				if ((g_sBlock[i].nX == nX || (g_sBlock[i].nX + 1) == nX) ||
-					(g_sBlock[i].nX == (nX + 1) || (g_sBlock[i].nX + 1) == (nX + 1)))
+					(g_sBlock[i].nX == (nX + 1) || (g_sBlock[i].nX + 1) == (nX + 1))) // x축 충돌 했는지에 판단
 				{
 					g_sBall.nDirect = g_BlockState[g_sBall.nDirect];	// 공이 블럭과 출동후 부딪힌 방향에 따라 방향을 바꾼다.(예를 들어 공의 값이 0일때 3으로 가도록)
 					g_sBlock[i].nLife = 0;								// 공이 부딪히면 블럭의 체력을 0으로 설정
 					nCount++;											// 충돌후 충돌 갯수 더하기
 					g_nGrade += 100;									// 충돌후 블럭하나당 점수 100점 추가
-					g_nBlockCount++;									// 맞춘 블럭 갯수 추가	
+					g_nBlockCount++;									// 맞춘 블럭 갯수 추가
 				}
 			}
 		}
@@ -22,7 +22,7 @@ int Collision(int nX, int nY) { // 공의 x, 공의 y
 
 	// 충돌 체크 
 	if (nCount != 0) {	//  충돌한 수가 0이 아닌 숫자들은 1을 반환
-		return 1;
+		return 1;		//	
 	}
 
 	// 공과 막대기 충돌

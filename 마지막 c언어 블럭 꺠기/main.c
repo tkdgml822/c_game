@@ -16,9 +16,9 @@ int main(void) {
 
 			switch (nKey) { // 입력된 키
 			case ' ' :		// 스페이스바를 입력시 실행
-				if (g_nGameState == INIT && g_nStage == 0) {	// 게임 상태가 초기 및 첫 스테이지이면 아래 코드를 실행
-					g_nGameState = READY;						// 게임 상태를 준비상태
-					g_UpdateOldTime = clock();					// 	g_UpdateOldTime에다가 시간을 넣는다.
+				if (g_nGameState == INIT && g_nStage == 0) {			// 게임 상태가 초기 및 첫 스테이지이면 아래 코드를 실행
+					g_nGameState = READY;								// 게임 상태를 준비상태
+					g_UpdateOldTime = clock();							// 	g_UpdateOldTime에다가 시간을 넣는다.
 				}
 				break;
 
@@ -47,14 +47,14 @@ int main(void) {
 				}
 				break;
 			case 77: // 오른 쪽 방향키를 눌렀을때 움직이는 코드
-				if (g_nGameState == RUNNING) {	// 현재 게임의 상태 RUNNING(움직이고 있을 때)
-					CurTime = clock();			// 현재 시간을 CurTime에다가 넣고 있다.
+				if (g_nGameState == RUNNING) {			// 현재 게임의 상태 RUNNING(움직이고 있을 때)
+					CurTime = clock();					// 현재 시간을 CurTime에다가 넣고 있다.
 					if (CurTime - g_sBar.OldTime > g_sBar.MoveTime) {	// 현재 시간(CurTime)과 이전에 바(bar)가 이동한 시간(g_sBar.OldTime)을 비교하여 바(bar)를 이동할 시간이 되었는지를 확인
-						g_sBar.OldTime = CurTime;	// 현재시간을 예전시간(g_sBar.OldTime)에다가 넣기
-						if (g_sBar.nX[2] < 40) {	// 경계 영역 체크
-							g_sBar.nX[0]++;			// 막대기 윈쪽 오른쪽으로
-							g_sBar.nX[1]++;			// 막대기 중간 오른쪽으로
-							g_sBar.nX[2]++;			// 막대기 오른쪽 오른쪽으로
+						g_sBar.OldTime = CurTime;		// 현재시간을 예전시간(g_sBar.OldTime)에다가 넣기
+						if (g_sBar.nX[2] < 40) {		// 경계 영역 체크
+							g_sBar.nX[0]++;				// 막대기 윈쪽 오른쪽으로
+							g_sBar.nX[1]++;				// 막대기 중간 오른쪽으로
+							g_sBar.nX[2]++;				// 막대기 오른쪽 오른쪽으로
 
 							if (g_sBall.nReady == 1) {	// 공이 준비상태인 경우 (막대기와 함께 붙어 있음)
 								g_sBall.nX++;			// 막대기와 함께 오른쪽
@@ -66,8 +66,8 @@ int main(void) {
 
 			case 72: // 방향키 위쪽눌렀을때
 				if (g_nGameState == RUNNING && g_sBall.nReady == 0) {	// 게임이 진행상태및 공이 진행 중일때
-					nX = g_sBall.nX;	// 현재의 공의 위치 저장 (x축)
-					nY = g_sBall.nY;	// 현재의 공의 위치 저장 (y축)
+					nX = g_sBall.nX;					// 현재의 공의 위치 저장 (x축)
+					nY = g_sBall.nY;					// 현재의 공의 위치 저장 (y축)
 
 					for (int i = 0; i < 3; i++) {		// 막대기가 3개로 구성
 						if (nY == (g_sBar.nY - 1)) {	// 공과 막대기가 접한 경우
