@@ -182,10 +182,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="functions.h" />
     <ClInclude Include="Screen.h" />
+    <ClInclude Include="structure.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FailureScreen.c" />
+    <ClCompile Include="InitScreen.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="ReadyScreen.c" />
+    <ClCompile Include="ResultScreen.c" />
+    <ClCompile Include="RunningScreen.c" />
+    <ClCompile Include="SuccessScreen.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
