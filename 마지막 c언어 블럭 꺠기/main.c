@@ -1,37 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "functions.h"
 #include "structure.h"
-
-BAR  g_sBar;  // 막대기 구조체 선언
-BALL g_sBall; // 공 구조체 선언
-
-// 벽과 충돌하게 되면 방향 상태
-int g_StateTable[4][6] = { 
-   {  3,  2, -1, -1, -1,  4 },
-   { -1,  5,  4, -1, -1, -1 },
-   { -1, -1,  1,  0,  5, -1 }, 
-   { -1, -1, -1, -1,  2,  1 }
-};
-
-int g_BlockState[6] = { 3, 2, 1, 0, 5, 4 }; // 블럭이 부딪혔을 때, 공의 방향을 변경하는데 사용되는 배열이다.
-
-BLOCK g_sBlock[200]; // 블럭 200개 선언
-GAME_STATE	g_nGameState = INIT;
-int         g_nIsSuccess = 0;
-int			g_nStage = -1;		// g_nStage변수는 3개의 맵을 알려주는 변수 main함수가 돌아가면 0으로 초기화되면 스테이지를 클리어 할때마다 1씩 늘어남
-int			g_nGrade = 0;	    // 점수
-int			g_nBestGrade = 0;
-int			g_nlastGrade = 0;
-int			g_nStageCount = 1;
-clock_t		g_GameStartTime, g_UpdateOldTime, g_RemainTime;
-int			g_nTotalGrade = 0;	// 총점
-
-STAGE_INFO  g_StageInfo[3] = {		 // STAGE_INFO의 구조체 배열을 초기화하는 코드입니다.
-	{  30, 100 * 1000       , 140 }, // { 벽돌의 개수, 남은 시간, 공의 속도 }
-	{  50,   2 * 100 * 1000 , 100 },
-	{ 100,   3 * 100 * 1000 ,  60 }};
-
-int			g_nBlockCount = 0;		// 맞춘 벽돌
+#include "MyVariable.h"
 
 // 같은 블럭 찾기
 int Search(int nEnd, int nX, int nY) {										// (블럭의 갯수, 블럭의 x, 블럭의 y)
@@ -44,7 +14,6 @@ int Search(int nEnd, int nX, int nY) {										// (블럭의 갯수, 블럭의 x, 블럭�
 	}
 	return 0;																// 같은 것이 없으면 (0 반환)
 }
-
 
 // RANDOM한 위치 안에서 블록을 입력 받은 개수만큼 표시
 void SetBlock(int nBlockCount) {
@@ -66,80 +35,6 @@ void SetBlock(int nBlockCount) {
 			}
 		}
 	}
-}
-
-
-int Collision(int nX, int nY) { // 공의 x, 공의 y - 1
-	int nCount = 0; // 충돌 개수
-
-	// 공과 벽돌의 충돌
-	for (int i = 0; i < g_StageInfo[g_nStage].nBlockCount; i++) {		// 3개의 스테이지별 블럭의 갯수만큼 반복
-		if (g_sBlock[i].nLife == 1) {									// 벽돌의 체력이 1일때
-			if (g_sBlock[i].nY == nY) {									// 해당 벽돌과 공의 위치를 비교하여 충돌 여부를 판단
-				if ((g_sBlock[i].nX == nX || (g_sBlock[i].nX + 1) == nX) ||
-					(g_sBlock[i].nX == (nX + 1) || (g_sBlock[i].nX + 1) == (nX + 1)))
-				{
-					g_sBall.nDirect = g_BlockState[g_sBall.nDirect];	// 공이 블럭과 출동후 부딪힌 방향에 따라 방향을 바꾼다.(예를 들어 공의 값이 0일때 3으로 가도록)
-																		// 공의 방향을 g_BlockState을 참조해서 방향을 바꿉니다.
-					g_sBlock[i].nLife = 0;								// 공이 부딪히면 블럭의 체력을 0으로 설정
-					nCount++;											// 충돌후 충돌 갯수 더하기
-					g_nGrade += 100;									// 충돌후 블럭하나당 점수 100점 추가
-					g_nBlockCount++;									// 맞춘 블럭 갯수 추가	
-				}
-			}
-		}
-	}
-
-	// 충돌 체크 
-	if (nCount != 0) {	//  충돌한 수가 0이 아닌 숫자들은 1을 반환
-		return 1;
-	}
-
-	// 공과 막대기 충돌
-	for (int i = 0; i < 3; i++) {									// 막대기의 수는 3개라서 3까지 반복
-		if (nY == g_sBar.nY) {										// 만약 공과 막대기의 갯수가 같을 시 
-			if ((nX >= g_sBar.nX[0] && nX <= (g_sBar.nX[2]))) {		// 공의 x방향이 막대기의 왼쪽 끝과 오른쪽 끝 사이에 있을시
-				g_sBall.nDirect = g_BlockState[g_sBall.nDirect];	// 현재 공의 방향이 들어가 다음에 움직이는 공의 방향으로 간다.
-
-				return 1;											// 공과 막대기가 충돌후 공의 방향을 바꾼후 1을 반환
-			}
-		}
-	}
-
-	// Note: 위쪽  
-	if (nY < 1) {											// 공이 위쪽 벽에 부딪히면 공의 방향을 바꾼다.
-		g_sBall.nDirect = g_StateTable[0][g_sBall.nDirect]; // 공의 현재 방향을	바꾼다.
-		return 1;											// 1 반환
-	}
-
-	// Note: 오른쪽
-	if (nX > 39) {											// 공이 오른쪽 벽에 부딪히면 공의 방향을 바꾼다.
-		g_sBall.nDirect = g_StateTable[1][g_sBall.nDirect];	// 공의 현재 방향을 바꾼다.
-		return 1;
-	}
-
-	// Note: 공의 초기화 및 생명 감소
-	if (nY > 22) {											// 공이 밑방향 즉, 막대기 밑으로 떨어졌을때의 코드
-		g_sBall.nHP--;										// 공이 밑으로 떨어지고 나면 공의 체력을 -1을 해준다.
-		
-		if (g_sBall.nHP == 0) {								// 공의 HP가 0이 되었을때 실행
-			g_nGameState = STOP;							// 게임을 STOP으로 바꾼다.
-		}
-		else {
-			g_sBall.nX = g_sBar.nX[1];						// 공의 x축을 막대기의 x축 중간에다가 둡니다.
-			g_sBall.nY = g_sBar.nY - 1;						// 공의 y축을 막대기의 y축 바로 위쪽에 둡니다.(-1을하는 이유: 막대기 위에다가 공을 두기 위해)
-			g_sBall.nReady = 1;								// 준비상태를 준비 상태로 바꿉니다.
-		}
-
-		return 1;											// 1 반환
-	}
-
-	if (nX < 2) {											// 원쪽 방향
-		g_sBall.nDirect = g_StateTable[3][g_sBall.nDirect];	// 원쪽 벽과 부딪히면 공의 방향을 바꿈
-		return 1;											// 1 반환
-	}
-
-	return 0;
 }
 
 void Init() {
@@ -264,11 +159,8 @@ void Update() {
 			g_nGameState = READY;		// 준비 상태
 		}
 		break;							// 탈출
-
-
 	}
 }
-
 
 void Render() {
 	char string[100];			// 문자열

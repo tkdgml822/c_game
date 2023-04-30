@@ -183,13 +183,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="functions.h" />
+    <ClInclude Include="MyVariable.h" />
+    <ClInclude Include="PlayerInfo.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="structure.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Collision.c" />
     <ClCompile Include="FailureScreen.c" />
     <ClCompile Include="InitScreen.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="MyVariable.c" />
     <ClCompile Include="ReadyScreen.c" />
     <ClCompile Include="ResultScreen.c" />
     <ClCompile Include="RunningScreen.c" />

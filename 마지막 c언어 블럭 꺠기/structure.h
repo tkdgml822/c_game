@@ -1,4 +1,5 @@
 #pragma once
+#include <time.h>
 
 typedef enum _GAME_STATE {	// 게임 스테이지 구조체
 	INIT,					// 초기 상태
