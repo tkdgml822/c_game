@@ -190,6 +190,7 @@
   <ItemGroup>
     <ClCompile Include="Collision.c" />
     <ClCompile Include="FailureScreen.c" />
+    <ClCompile Include="Init.c" />
     <ClCompile Include="InitScreen.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="MyVariable.c" />

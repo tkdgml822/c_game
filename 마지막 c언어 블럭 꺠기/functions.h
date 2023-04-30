@@ -13,7 +13,7 @@ void RunningScreen(void);	// 작동중 인터페이스
 
 int Collision(int, int);	// 충돌 기능
 void Update(void);			// 게임상태 업데이트
-
+void Init(void);			// 기본값
 
 
 
