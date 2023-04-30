@@ -24,9 +24,6 @@
     <ClInclude Include="functions.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerInfo.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="MyVariable.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -57,6 +54,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="MyVariable.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Update.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

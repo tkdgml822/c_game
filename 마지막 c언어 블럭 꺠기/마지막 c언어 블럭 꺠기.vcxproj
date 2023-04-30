@@ -184,7 +184,6 @@
   <ItemGroup>
     <ClInclude Include="functions.h" />
     <ClInclude Include="MyVariable.h" />
-    <ClInclude Include="PlayerInfo.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="structure.h" />
   </ItemGroup>
@@ -198,6 +197,7 @@
     <ClCompile Include="ResultScreen.c" />
     <ClCompile Include="RunningScreen.c" />
     <ClCompile Include="SuccessScreen.c" />
+    <ClCompile Include="Update.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
