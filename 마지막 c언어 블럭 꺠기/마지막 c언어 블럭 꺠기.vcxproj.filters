@@ -65,5 +65,11 @@
     <ClCompile Include="Render.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="SetBlock.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Search.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

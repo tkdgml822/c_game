@@ -3,40 +3,6 @@
 #include "structure.h"
 #include "MyVariable.h"
 
-// 같은 블럭 찾기
-int Search(int nEnd, int nX, int nY) {										// (블럭의 갯수, 블럭의 x, 블럭의 y)
-	for (int i = 0; i < nEnd; i++) {										// 블럭의 갯수 만큼 반복
-		if (g_sBlock[i].nY == nY) {											// Y축이 같으면 X축 검사
-			if (g_sBlock[i].nX == nX || (g_sBlock[i].nX + 1) == nX ||		// 찾으려는 블럭의 좌우로 한 칸씩 여유를 두어 검사
-				g_sBlock[i].nX == nX + 1 || (g_sBlock[i].nX + 1) == nX + 1)
-				return 1;													// 같은 것이 있으면 (반환 되서 받는 곳은 While문이라서 1이 반환되면 무한 루프)
-		}
-	}
-	return 0;																// 같은 것이 없으면 (0 반환)
-}
-
-// RANDOM한 위치 안에서 블록을 입력 받은 개수만큼 표시
-void SetBlock(int nBlockCount) {
-	int nX, nY, i;							// 랜덤값을 받기위한 x, y, 반복문에 쓰이기 위한 i (int형으로 선언)
-
-	srand((unsigned int)time(NULL));		// 랜덤값을 쓰기위한 시드값 설정
-
-	for (i = 0; i < nBlockCount; i++) {		// 블럭 갯수 만큼 반복
-		g_sBlock[i].nLife = 1;				// 블럭에 체력 1 대입
-
-		while (1) {							// 무한 루프 (중복된 블럭이 있을시 무한 반복 없으면 코드 종료)
-			nX = rand() % 39 + 2;			// 2 ~ 40 랜덤값 설정 (게임의 경계를 넘기지 않을려고 하기 위해 2부터 시작)
-			nY = rand() % 10 + 1;			// 1 ~ 10 랜덤값 설정
-
-			if (Search(i, nX, nY) == 0) {	// 같은 위치에 블럭이 생성되지 않기 위해 방지하는 코드
-				g_sBlock[i].nX = nX;		// 중복된 값이 없으면 x에 배치 
-				g_sBlock[i].nY = nY;		// 중복된 값이 없으면 y에 배치
-				break;						// x, y에 블럭 배치후 while문 종료
-			}
-		}
-	}
-}
-
 int main(void) {
 	int nKey, nX, nY;	// 키를 담을변수, x축, y축 
 	clock_t CurTime;	// 시간을 담을 변수 CurTime(현 시점) 선언

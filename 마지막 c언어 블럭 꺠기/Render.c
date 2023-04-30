@@ -2,6 +2,7 @@
 #include "MyVariable.h"
 #include <stdio.h>
 
+// 화면 표시
 void Render() {
 	char string[100];			// 문자열
 

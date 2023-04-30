@@ -198,6 +198,8 @@
     <ClCompile Include="Render.c" />
     <ClCompile Include="ResultScreen.c" />
     <ClCompile Include="RunningScreen.c" />
+    <ClCompile Include="Search.c" />
+    <ClCompile Include="SetBlock.c" />
     <ClCompile Include="SuccessScreen.c" />
     <ClCompile Include="Update.c" />
   </ItemGroup>
