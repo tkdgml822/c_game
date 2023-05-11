@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "structure.h"
 #include "MyVariable.h"
+#include "Interface.h"
 #define KEYDOWN 80
 #define KEYLEFT 75
 #define KEYRINGT 77
@@ -11,6 +12,9 @@ int main(void) {
 	int nKey, nX, nY;	// 키를 담을변수, x축, y축 
 	clock_t CurTime;	// 시간을 담을 변수 CurTime(현 시점) 선언
 
+	UserData();			// 유저 데이터
+
+	
 	ScreenInit();		// 콘솔 화면 버퍼 초기화
 	Init();				// 초기 상태 : 막대기, 공, 블럭 세팅
 
@@ -19,14 +23,14 @@ int main(void) {
 			nKey = _getch(); // _getch() : 키보드로 하나의 문자를 입력받는다.
 
 			switch (nKey) { // 입력된 키
-			case ' ' :		// 스페이스바를 입력시 실행
+			case ' ':		// 스페이스바를 입력시 실행
 				if (g_nGameState == INIT && g_nStage == 0) {			// 게임 상태가 초기 및 첫 스테이지이면 아래 코드를 실행
 					g_nGameState = READY;								// 게임 상태를 준비상태
 					g_UpdateOldTime = clock();							// 	g_UpdateOldTime에다가 시간을 넣는다.
 				}
 				break;
 
-			
+
 			case KEYDOWN:// 방향키 아래를 눌렀을 때 발사되는 키
 				if (g_nGameState == RUNNING && g_sBall.nReady == 1) {	// 게임 상태가 진행중 및 준비상태인 경우
 					g_sBall.nReady = 0;									// 준비상태에서 진행상태로 바꾼다.
@@ -65,7 +69,7 @@ int main(void) {
 							}
 						}
 					}
-				}		
+				}
 				break;									// 탈출
 
 			case KEYUP: // 방향키 위쪽눌렀을때
@@ -78,7 +82,7 @@ int main(void) {
 							if ((nX >= g_sBar.nX[0] && nX <= (g_sBar.nX[2]))) { // 막대기 원쪽 부분과 오른쪽 부분 사이에 있으면
 								g_sBall.nReady = 1;		// 충돌한 경우 공의 상태를 1(ready)로 변경 - 공이 멈춤
 								break;					// 탈출
-							}	
+							}
 						}
 					}
 				}
@@ -95,7 +99,7 @@ int main(void) {
 				if (g_nGameState == RUNNING && g_sBall.nReady == 1) {	// 게임이 진행상태 및 공이 준비상태일때
 					g_sBall.nDirect = TOP;								// 공을 위쪽으로
 					g_sBall.OldTime = clock();							// 현시간을 예전시간으로
-				}	
+				}
 				break;													// 탈출	
 
 			case '3':													// 3을 눌렀을때
@@ -130,4 +134,5 @@ int main(void) {
 
 	ScreenRelease();													// 콘솔 화면을 닫습니다.
 	return 0;
+	
 }

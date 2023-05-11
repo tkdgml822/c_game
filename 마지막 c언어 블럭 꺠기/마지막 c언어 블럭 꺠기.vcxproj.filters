@@ -71,5 +71,11 @@
     <ClCompile Include="Search.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="UserData.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface.h">
+      <Filter>헤더 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
