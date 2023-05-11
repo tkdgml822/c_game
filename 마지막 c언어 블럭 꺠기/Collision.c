@@ -1,72 +1,72 @@
 #include "MyVariable.h"
 
-int Collision(int nX, int nY) { // °øÀÇ x, °øÀÇ y
-	int nCount = 0; // Ãæµ¹ °³¼ö
+int Collision(int nX, int nY) { // ê³µì˜ x, ê³µì˜ y
+	int nCount = 0; // ì¶©ëŒ ê°œìˆ˜
 
-	// °ø°ú º®µ¹ÀÇ Ãæµ¹
-	for (int i = 0; i < g_StageInfo[g_nStage].nBlockCount; i++) {		// 3°³ÀÇ ½ºÅ×ÀÌÁöº° ºí·°ÀÇ °¹¼ö¸¸Å­ ¹Ýº¹
-		if (g_sBlock[i].nLife == 1) {									// º®µ¹ÀÇ Ã¼·ÂÀÌ 1ÀÏ¶§
-			if (g_sBlock[i].nY == nY) {									// ÇØ´ç º®µ¹°ú °øÀÇ À§Ä¡¸¦ ºñ±³ÇÏ¿© Ãæµ¹ ¿©ºÎ¸¦ ÆÇ´Ü
+	// ê³µê³¼ ë²½ëŒì˜ ì¶©ëŒ
+	for (int i = 0; i < g_StageInfo[g_nStage].nBlockCount; i++) {		// 3ê°œì˜ ìŠ¤í…Œì´ì§€ë³„ ë¸”ëŸ­ì˜ ê°¯ìˆ˜ë§Œí¼ ë°˜ë³µ
+		if (g_sBlock[i].nLife == 1) {									// ë²½ëŒì˜ ì²´ë ¥ì´ 1ì¼ë•Œ
+			if (g_sBlock[i].nY == nY) {									// í•´ë‹¹ ë²½ëŒê³¼ ê³µì˜ ìœ„ì¹˜ë¥¼ ë¹„êµí•˜ì—¬ ì¶©ëŒ ì—¬ë¶€ë¥¼ íŒë‹¨
 				if ((g_sBlock[i].nX == nX || (g_sBlock[i].nX + 1) == nX) ||
-					(g_sBlock[i].nX == (nX + 1) || (g_sBlock[i].nX + 1) == (nX + 1))) // xÃà Ãæµ¹ Çß´ÂÁö¿¡ ÆÇ´Ü
+					(g_sBlock[i].nX == (nX + 1) || (g_sBlock[i].nX + 1) == (nX + 1))) // xì¶• ì¶©ëŒ í–ˆëŠ”ì§€ì— íŒë‹¨
 				{
-					g_sBall.nDirect = g_BlockState[g_sBall.nDirect];	// °øÀÌ ºí·°°ú Ãâµ¿ÈÄ ºÎµúÈù ¹æÇâ¿¡ µû¶ó ¹æÇâÀ» ¹Ù²Û´Ù.(¿¹¸¦ µé¾î °øÀÇ °ªÀÌ 0ÀÏ¶§ 3À¸·Î °¡µµ·Ï)
-					g_sBlock[i].nLife = 0;								// °øÀÌ ºÎµúÈ÷¸é ºí·°ÀÇ Ã¼·ÂÀ» 0À¸·Î ¼³Á¤
-					nCount++;											// Ãæµ¹ÈÄ Ãæµ¹ °¹¼ö ´õÇÏ±â
-					g_nGrade += 100;									// Ãæµ¹ÈÄ ºí·°ÇÏ³ª´ç Á¡¼ö 100Á¡ Ãß°¡
-					g_nBlockCount++;									// ¸ÂÃá ºí·° °¹¼ö Ãß°¡
+					g_sBall.nDirect = g_BlockState[g_sBall.nDirect];	// ê³µì´ ë¸”ëŸ­ê³¼ ì¶œë™í›„ ë¶€ë”ªížŒ ë°©í–¥ì— ë”°ë¼ ë°©í–¥ì„ ë°”ê¾¼ë‹¤.(ì˜ˆë¥¼ ë“¤ì–´ ê³µì˜ ê°’ì´ 0ì¼ë•Œ 3ìœ¼ë¡œ ê°€ë„ë¡)
+					g_sBlock[i].nLife = 0;								// ê³µì´ ë¶€ë”ªížˆë©´ ë¸”ëŸ­ì˜ ì²´ë ¥ì„ 0ìœ¼ë¡œ ì„¤ì •
+					nCount++;											// ì¶©ëŒí›„ ì¶©ëŒ ê°¯ìˆ˜ ë”í•˜ê¸°
+					g_nGrade += 100;									// ì¶©ëŒí›„ ë¸”ëŸ­í•˜ë‚˜ë‹¹ ì ìˆ˜ 100ì  ì¶”ê°€
+					g_nBlockCount++;									// ë§žì¶˜ ë¸”ëŸ­ ê°¯ìˆ˜ ì¶”ê°€
 				}
 			}
 		}
 	}
 
-	// Ãæµ¹ Ã¼Å© 
-	if (nCount != 0) {	//  Ãæµ¹ÇÑ ¼ö°¡ 0ÀÌ ¾Æ´Ñ ¼ýÀÚµéÀº 1À» ¹ÝÈ¯
+	// ì¶©ëŒ ì²´í¬ 
+	if (nCount != 0) {	//  ì¶©ëŒí•œ ìˆ˜ê°€ 0ì´ ì•„ë‹Œ ìˆ«ìžë“¤ì€ 1ì„ ë°˜í™˜
 		return 1;		//	
 	}
 
-	// °ø°ú ¸·´ë±â Ãæµ¹
-	for (int i = 0; i < 3; i++) {									// ¸·´ë±âÀÇ ¼ö´Â 3°³¶ó¼­ 3±îÁö ¹Ýº¹
-		if (nY == g_sBar.nY) {										// ¸¸¾à °ø°ú ¸·´ë±âÀÇ °¹¼ö°¡ °°À» ½Ã 
-			if ((nX >= g_sBar.nX[0] && nX <= (g_sBar.nX[2]))) {		// °øÀÇ x¹æÇâÀÌ ¸·´ë±âÀÇ ¿ÞÂÊ ³¡°ú ¿À¸¥ÂÊ ³¡ »çÀÌ¿¡ ÀÖÀ»½Ã
-				g_sBall.nDirect = g_BlockState[g_sBall.nDirect];	// ÇöÀç °øÀÇ ¹æÇâÀÌ µé¾î°¡ ´ÙÀ½¿¡ ¿òÁ÷ÀÌ´Â °øÀÇ ¹æÇâÀ¸·Î °£´Ù.
+	// ê³µê³¼ ë§‰ëŒ€ê¸° ì¶©ëŒ
+	for (int i = 0; i < 3; i++) {									// ë§‰ëŒ€ê¸°ì˜ ìˆ˜ëŠ” 3ê°œë¼ì„œ 3ê¹Œì§€ ë°˜ë³µ
+		if (nY == g_sBar.nY) {										// ë§Œì•½ ê³µê³¼ ë§‰ëŒ€ê¸°ì˜ ê°¯ìˆ˜ê°€ ê°™ì„ ì‹œ 
+			if ((nX >= g_sBar.nX[0] && nX <= (g_sBar.nX[2]))) {		// ê³µì˜ xë°©í–¥ì´ ë§‰ëŒ€ê¸°ì˜ ì™¼ìª½ ëê³¼ ì˜¤ë¥¸ìª½ ë ì‚¬ì´ì— ìžˆì„ì‹œ
+				g_sBall.nDirect = g_BlockState[g_sBall.nDirect];	// í˜„ìž¬ ê³µì˜ ë°©í–¥ì´ ë“¤ì–´ê°€ ë‹¤ìŒì— ì›€ì§ì´ëŠ” ê³µì˜ ë°©í–¥ìœ¼ë¡œ ê°„ë‹¤.
 
-				return 1;											// °ø°ú ¸·´ë±â°¡ Ãæµ¹ÈÄ °øÀÇ ¹æÇâÀ» ¹Ù²ÛÈÄ 1À» ¹ÝÈ¯
+				return 1;											// ê³µê³¼ ë§‰ëŒ€ê¸°ê°€ ì¶©ëŒí›„ ê³µì˜ ë°©í–¥ì„ ë°”ê¾¼í›„ 1ì„ ë°˜í™˜
 			}
 		}
 	}
 
-	// Note: À§ÂÊ  
-	if (nY < 1) {											// °øÀÌ À§ÂÊ º®¿¡ ºÎµúÈ÷¸é °øÀÇ ¹æÇâÀ» ¹Ù²Û´Ù.
-		g_sBall.nDirect = g_StateTable[0][g_sBall.nDirect]; // °øÀÇ ÇöÀç ¹æÇâÀ»	¹Ù²Û´Ù.
-		return 1;											// 1 ¹ÝÈ¯
+	// Note: ìœ„ìª½  
+	if (nY < 1) {											// ê³µì´ ìœ„ìª½ ë²½ì— ë¶€ë”ªížˆë©´ ê³µì˜ ë°©í–¥ì„ ë°”ê¾¼ë‹¤.
+		g_sBall.nDirect = g_StateTable[0][g_sBall.nDirect]; // ê³µì˜ í˜„ìž¬ ë°©í–¥ì„	ë°”ê¾¼ë‹¤.
+		return 1;											// 1 ë°˜í™˜
 	}
 
-	// Note: ¿À¸¥ÂÊ
-	if (nX > 39) {											// °øÀÌ ¿À¸¥ÂÊ º®¿¡ ºÎµúÈ÷¸é °øÀÇ ¹æÇâÀ» ¹Ù²Û´Ù.
-		g_sBall.nDirect = g_StateTable[1][g_sBall.nDirect];	// °øÀÇ ÇöÀç ¹æÇâÀ» ¹Ù²Û´Ù.
+	// Note: ì˜¤ë¥¸ìª½
+	if (nX > 39) {											// ê³µì´ ì˜¤ë¥¸ìª½ ë²½ì— ë¶€ë”ªížˆë©´ ê³µì˜ ë°©í–¥ì„ ë°”ê¾¼ë‹¤.
+		g_sBall.nDirect = g_StateTable[1][g_sBall.nDirect];	// ê³µì˜ í˜„ìž¬ ë°©í–¥ì„ ë°”ê¾¼ë‹¤.
 		return 1;
 	}
 
-	// Note: °øÀÇ ÃÊ±âÈ­ ¹× »ý¸í °¨¼Ò
-	if (nY > 22) {											// °øÀÌ ¹Ø¹æÇâ Áï, ¸·´ë±â ¹ØÀ¸·Î ¶³¾îÁ³À»¶§ÀÇ ÄÚµå
-		g_sBall.nHP--;										// °øÀÌ ¹ØÀ¸·Î ¶³¾îÁö°í ³ª¸é °øÀÇ Ã¼·ÂÀ» -1À» ÇØÁØ´Ù.
+	// Note: ê³µì˜ ì´ˆê¸°í™” ë° ìƒëª… ê°ì†Œ
+	if (nY > 22) {											// ê³µì´ ë°‘ë°©í–¥ ì¦‰, ë§‰ëŒ€ê¸° ë°‘ìœ¼ë¡œ ë–¨ì–´ì¡Œì„ë•Œì˜ ì½”ë“œ
+		g_sBall.nHP--;										// ê³µì´ ë°‘ìœ¼ë¡œ ë–¨ì–´ì§€ê³  ë‚˜ë©´ ê³µì˜ ì²´ë ¥ì„ -1ì„ í•´ì¤€ë‹¤.
 
-		if (g_sBall.nHP == 0) {								// °øÀÇ HP°¡ 0ÀÌ µÇ¾úÀ»¶§ ½ÇÇà
-			g_nGameState = STOP;							// °ÔÀÓÀ» STOPÀ¸·Î ¹Ù²Û´Ù.
+		if (g_sBall.nHP == 0) {								// ê³µì˜ HPê°€ 0ì´ ë˜ì—ˆì„ë•Œ ì‹¤í–‰
+			g_nGameState = STOP;							// ê²Œìž„ì„ STOPìœ¼ë¡œ ë°”ê¾¼ë‹¤.
 		}
 		else {
-			g_sBall.nX = g_sBar.nX[1];						// °øÀÇ xÃàÀ» ¸·´ë±âÀÇ xÃà Áß°£¿¡´Ù°¡ µÓ´Ï´Ù.
-			g_sBall.nY = g_sBar.nY - 1;						// °øÀÇ yÃàÀ» ¸·´ë±âÀÇ yÃà ¹Ù·Î À§ÂÊ¿¡ µÓ´Ï´Ù.(-1À»ÇÏ´Â ÀÌÀ¯: ¸·´ë±â À§¿¡´Ù°¡ °øÀ» µÎ±â À§ÇØ)
-			g_sBall.nReady = 1;								// ÁØºñ»óÅÂ¸¦ ÁØºñ »óÅÂ·Î ¹Ù²ß´Ï´Ù.
+			g_sBall.nX = g_sBar.nX[1];						// ê³µì˜ xì¶•ì„ ë§‰ëŒ€ê¸°ì˜ xì¶• ì¤‘ê°„ì—ë‹¤ê°€ ë‘¡ë‹ˆë‹¤.
+			g_sBall.nY = g_sBar.nY - 1;						// ê³µì˜ yì¶•ì„ ë§‰ëŒ€ê¸°ì˜ yì¶• ë°”ë¡œ ìœ„ìª½ì— ë‘¡ë‹ˆë‹¤.(-1ì„í•˜ëŠ” ì´ìœ : ë§‰ëŒ€ê¸° ìœ„ì—ë‹¤ê°€ ê³µì„ ë‘ê¸° ìœ„í•´)
+			g_sBall.nReady = 1;								// ì¤€ë¹„ìƒíƒœë¥¼ ì¤€ë¹„ ìƒíƒœë¡œ ë°”ê¿‰ë‹ˆë‹¤.
 		}
 
-		return 1;											// 1 ¹ÝÈ¯
+		return 1;											// 1 ë°˜í™˜
 	}
 
-	if (nX < 2) {											// ¿øÂÊ ¹æÇâ
-		g_sBall.nDirect = g_StateTable[3][g_sBall.nDirect];	// ¿øÂÊ º®°ú ºÎµúÈ÷¸é °øÀÇ ¹æÇâÀ» ¹Ù²Þ
-		return 1;											// 1 ¹ÝÈ¯
+	if (nX < 2) {											// ì›ìª½ ë°©í–¥
+		g_sBall.nDirect = g_StateTable[3][g_sBall.nDirect];	// ì›ìª½ ë²½ê³¼ ë¶€ë”ªížˆë©´ ê³µì˜ ë°©í–¥ì„ ë°”ê¿ˆ
+		return 1;											// 1 ë°˜í™˜
 	}
 
 	return 0;

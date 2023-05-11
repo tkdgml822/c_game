@@ -1,20 +1,20 @@
 #pragma once
 #include "structure.h"
 
-extern STAGE_INFO  g_StageInfo[3];		// STAGE_INFOÀÇ ±¸Á¶Ã¼ ¹è¿­À» ÃÊ±âÈ­ÇÏ´Â ÄÚµåÀÔ´Ï´Ù.
-extern BAR  g_sBar;						// ¸·´ë±â ±¸Á¶Ã¼ ¼±¾ğ
-extern BALL g_sBall;					// °ø ±¸Á¶Ã¼ ¼±¾ğ
+extern STAGE_INFO  g_StageInfo[3];		// STAGE_INFOì˜ êµ¬ì¡°ì²´ ë°°ì—´ì„ ì´ˆê¸°í™”í•˜ëŠ” ì½”ë“œì…ë‹ˆë‹¤.
+extern BAR  g_sBar;						// ë§‰ëŒ€ê¸° êµ¬ì¡°ì²´ ì„ ì–¸
+extern BALL g_sBall;					// ê³µ êµ¬ì¡°ì²´ ì„ ì–¸
 
-extern int			g_nStage;			// g_nStageº¯¼ö´Â 3°³ÀÇ ¸ÊÀ» ¾Ë·ÁÁÖ´Â º¯¼ö mainÇÔ¼ö°¡ µ¹¾Æ°¡¸é 0À¸·Î ÃÊ±âÈ­µÇ¸é ½ºÅ×ÀÌÁö¸¦ Å¬¸®¾î ÇÒ¶§¸¶´Ù 1¾¿ ´Ã¾î³²
-extern int			g_StateTable[4][6];	// º®°ú Ãæµ¹ÇÏ°Ô µÇ¸é ¹æÇâ »óÅÂ
-extern int			g_BlockState[6];	// ºí·°ÀÌ ºÎµúÇûÀ» ¶§, °øÀÇ ¹æÇâÀ» º¯°æÇÏ´Âµ¥ »ç¿ëµÇ´Â ¹è¿­ÀÌ´Ù.
-extern BLOCK		g_sBlock[200];		// ºí·° 200°³ ¼±¾ğ
-extern GAME_STATE	g_nGameState;		// ½ºÅ×ÀÌÁö
+extern int			g_nStage;			// g_nStageë³€ìˆ˜ëŠ” 3ê°œì˜ ë§µì„ ì•Œë ¤ì£¼ëŠ” ë³€ìˆ˜ mainí•¨ìˆ˜ê°€ ëŒì•„ê°€ë©´ 0ìœ¼ë¡œ ì´ˆê¸°í™”ë˜ë©´ ìŠ¤í…Œì´ì§€ë¥¼ í´ë¦¬ì–´ í• ë•Œë§ˆë‹¤ 1ì”© ëŠ˜ì–´ë‚¨
+extern int			g_StateTable[4][6];	// ë²½ê³¼ ì¶©ëŒí•˜ê²Œ ë˜ë©´ ë°©í–¥ ìƒíƒœ
+extern int			g_BlockState[6];	// ë¸”ëŸ­ì´ ë¶€ë”ªí˜”ì„ ë•Œ, ê³µì˜ ë°©í–¥ì„ ë³€ê²½í•˜ëŠ”ë° ì‚¬ìš©ë˜ëŠ” ë°°ì—´ì´ë‹¤.
+extern BLOCK		g_sBlock[200];		// ë¸”ëŸ­ 200ê°œ ì„ ì–¸
+extern GAME_STATE	g_nGameState;		// ìŠ¤í…Œì´ì§€
 extern int			g_nIsSuccess;		
-extern int			g_nGrade;			// Á¡¼ö
-extern int			g_nBestGrade;		// ÃÖ°íÁ¡¼ö
-extern int			g_nlastGrade;		// ¸¶Áö¸· Á¡¼ö
-extern int			g_nStageCount;		// ½ºÅ×ÀÌÁö Ä«¿îÅÍ
+extern int			g_nGrade;			// ì ìˆ˜
+extern int			g_nBestGrade;		// ìµœê³ ì ìˆ˜
+extern int			g_nlastGrade;		// ë§ˆì§€ë§‰ ì ìˆ˜
+extern int			g_nStageCount;		// ìŠ¤í…Œì´ì§€ ì¹´ìš´í„°
 extern clock_t		g_GameStartTime, g_UpdateOldTime, g_RemainTime;
-extern int			g_nTotalGrade;		// ÃÑÁ¡
-extern int			g_nBlockCount;		// ¸ÂÃá º®µ¹
+extern int			g_nTotalGrade;		// ì´ì 
+extern int			g_nBlockCount;		// ë§ì¶˜ ë²½ëŒ

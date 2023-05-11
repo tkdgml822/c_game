@@ -1,53 +1,53 @@
 #pragma once
 #include <time.h>
 
-typedef enum _GAME_STATE {	// °ÔÀÓ ½ºÅ×ÀÌÁö ±¸Á¶Ã¼
-	INIT,					// ÃÊ±â »óÅÂ
-	READY,					// ÁØºñ »óÅÂ 
-	RUNNING,				// °¡µ¿ »óÅÂ
-	SUCCESS,				// ½ºÅ×ÀÌÁö Å¬¸®¾î »óÅÂ
-	FAILED,					// ½ºÅ×ÀÌÁö ½ÇÆÐ »óÅÂ
-	STOP,					// °ÔÀÓ ¸ØÃèÀ» ¶§
-	RESULT					// °á°ú °ª
-} GAME_STATE;				// Game_State·Î ÀÌ¸§ Àç¼³Á¤
+typedef enum _GAME_STATE {	// ê²Œìž„ ìŠ¤í…Œì´ì§€ êµ¬ì¡°ì²´
+	INIT,					// ì´ˆê¸° ìƒíƒœ
+	READY,					// ì¤€ë¹„ ìƒíƒœ 
+	RUNNING,				// ê°€ë™ ìƒíƒœ
+	SUCCESS,				// ìŠ¤í…Œì´ì§€ í´ë¦¬ì–´ ìƒíƒœ
+	FAILED,					// ìŠ¤í…Œì´ì§€ ì‹¤íŒ¨ ìƒíƒœ
+	STOP,					// ê²Œìž„ ë©ˆì·„ì„ ë•Œ
+	RESULT					// ê²°ê³¼ ê°’
+} GAME_STATE;				// Game_Stateë¡œ ì´ë¦„ ìž¬ì„¤ì •
 
-// °øÀÇ °¢µµ ±¸Á¶Ã¼
-typedef enum _DIRECT {	// °ø ¹æÇâ ±¸Á¶Ã¼
-	TOP,				// À§ÂÊ
-	LEFT_TOP,			// À§ÂÊ ¿ÞÂÊ ´ë°¢¼±
-	LEFT_DOWN,			// ¹ØÂÊ ¿ÞÂÊ ´ë°¢¼±
-	DOWN,				// ¹ØÀ¸·Î
-	RIGHT_DOWN,			// ¹ØÂÊ ¿À¸¥ÂÊ ´ë°¢¼±
-	RIGHT_TOP			// À§ÂÊ ¿À¸¥ÂÊ ´ë°¢¼±
-} DIRECT;				// ÀÌ¸§ DIRECTÀ¸·Î Àç¼³Á¤
+// ê³µì˜ ê°ë„ êµ¬ì¡°ì²´
+typedef enum _DIRECT {	// ê³µ ë°©í–¥ êµ¬ì¡°ì²´
+	TOP,				// ìœ„ìª½
+	LEFT_TOP,			// ìœ„ìª½ ì™¼ìª½ ëŒ€ê°ì„ 
+	LEFT_DOWN,			// ë°‘ìª½ ì™¼ìª½ ëŒ€ê°ì„ 
+	DOWN,				// ë°‘ìœ¼ë¡œ
+	RIGHT_DOWN,			// ë°‘ìª½ ì˜¤ë¥¸ìª½ ëŒ€ê°ì„ 
+	RIGHT_TOP			// ìœ„ìª½ ì˜¤ë¥¸ìª½ ëŒ€ê°ì„ 
+} DIRECT;				// ì´ë¦„ DIRECTìœ¼ë¡œ ìž¬ì„¤ì •
 
-// ½ºÅ×ÀÌÁö ±¸Á¶Ã¼
-typedef struct _STAGE_INFO {	// ½ºÅ×ÀÌÁö ¼Ó¼º ±¸Á¶Ã¼
-	int      nBlockCount;		// º®µ¹ °³¼ö
-	clock_t  LimitTime;			// Á¦ÇÑ ½Ã°£
-	clock_t  ball_MoveTime;		// °øÀÌ ¿òÁ÷ÀÌ´Â ¼Óµµ
-} STAGE_INFO;					// STAGE_INFOÀ¸·Î ±¸Á¶Ã¼ ÀÌ¸§ Àç¼³Á¤
+// ìŠ¤í…Œì´ì§€ êµ¬ì¡°ì²´
+typedef struct _STAGE_INFO {	// ìŠ¤í…Œì´ì§€ ì†ì„± êµ¬ì¡°ì²´
+	int      nBlockCount;		// ë²½ëŒ ê°œìˆ˜
+	clock_t  LimitTime;			// ì œí•œ ì‹œê°„
+	clock_t  ball_MoveTime;		// ê³µì´ ì›€ì§ì´ëŠ” ì†ë„
+} STAGE_INFO;					// STAGE_INFOìœ¼ë¡œ êµ¬ì¡°ì²´ ì´ë¦„ ìž¬ì„¤ì •
 
-// °ø ±¸Á¶Ã¼
-typedef struct _BALL {   // °ø ±¸Á¶Ã¼
-	int		 nReady;     // 1 ÀÌ¸é ÁØºñ »óÅÂ, 0ÀÌ¸é ÀÌµ¿ »óÅÂ
-	int		 nHP;        // »ý¸í
-	int		 nX, nY;     // ÁÂÇ¥
-	DIRECT   nDirect;    // ÀÌµ¿ ¹æÇâ
-	clock_t  MoveTime;   // ÀÌµ¿ ½Ã°£ °£°Ý
-	clock_t  OldTime;	 // ÀÌÀü ÀÌµ¿ ½Ã°¢
-} BALL;					 // ÀÌ¸§ BALL·Î ¼±¾ð
+// ê³µ êµ¬ì¡°ì²´
+typedef struct _BALL {   // ê³µ êµ¬ì¡°ì²´
+	int		 nReady;     // 1 ì´ë©´ ì¤€ë¹„ ìƒíƒœ, 0ì´ë©´ ì´ë™ ìƒíƒœ
+	int		 nHP;        // ìƒëª…
+	int		 nX, nY;     // ì¢Œí‘œ
+	DIRECT   nDirect;    // ì´ë™ ë°©í–¥
+	clock_t  MoveTime;   // ì´ë™ ì‹œê°„ ê°„ê²©
+	clock_t  OldTime;	 // ì´ì „ ì´ë™ ì‹œê°
+} BALL;					 // ì´ë¦„ BALLë¡œ ì„ ì–¸
 
-// ºí·° ±¸Á¶Ã¼
-typedef struct _BLOCK { // ºí·° ±¸Á¶Ã¼
-	int  nLife;			// ºí·° Ã¼·Â
-	int  nX, nY;		// ºí·° X, YÃà
-} BLOCK;				// ÀÌ¸§ BLOCK·Î ¼±¾ð
+// ë¸”ëŸ­ êµ¬ì¡°ì²´
+typedef struct _BLOCK { // ë¸”ëŸ­ êµ¬ì¡°ì²´
+	int  nLife;			// ë¸”ëŸ­ ì²´ë ¥
+	int  nX, nY;		// ë¸”ëŸ­ X, Yì¶•
+} BLOCK;				// ì´ë¦„ BLOCKë¡œ ì„ ì–¸
 
-// ¸·´ë±â ±¸Á¶Ã¼
-typedef struct _BAR {	// ¸·´ë±â ±¸Á¶Ã¼
-	int nX[3];			// ¸·´ë±â X Ãà
-	int nY;				// ¸·´ë±â Y Ãà
-	clock_t OldTime;	// ¸·´ë±â Àü ½Ã°£
-	clock_t MoveTime;	// ¸·´ë±â ¿òÁ÷ÀÌ´Â ½Ã°£
-} BAR;					// ÀÌ¸§ BAR·Î ¼±¾ð
+// ë§‰ëŒ€ê¸° êµ¬ì¡°ì²´
+typedef struct _BAR {	// ë§‰ëŒ€ê¸° êµ¬ì¡°ì²´
+	int nX[3];			// ë§‰ëŒ€ê¸° X ì¶•
+	int nY;				// ë§‰ëŒ€ê¸° Y ì¶•
+	clock_t OldTime;	// ë§‰ëŒ€ê¸° ì „ ì‹œê°„
+	clock_t MoveTime;	// ë§‰ëŒ€ê¸° ì›€ì§ì´ëŠ” ì‹œê°„
+} BAR;					// ì´ë¦„ BARë¡œ ì„ ì–¸

@@ -1,86 +1,86 @@
 #include "MyVariable.h"
 
-// °ÔÀÓ »óÅÂ ¾÷µ¥ÀÌÆ®
+// ê²Œìž„ ìƒíƒœ ì—…ë°ì´íŠ¸
 void Update() {
-	clock_t CurTime = clock();								// ÇöÀç½Ã°£ ´ã±â
+	clock_t CurTime = clock();								// í˜„ìž¬ì‹œê°„ ë‹´ê¸°
 
-	switch (g_nGameState) {									// °ÔÀÓÀÇ ÇöÀç »óÅÂ(ÃÊ±â °ªÀº INIT)
-	case READY:												// ÁØºñ
-		if (CurTime - g_UpdateOldTime > 3000) {				// °ÔÀÓ½ÃÀÛÈÄ 2ÃÊÈÄ ÀÚµ¿À¸·Î ½ÃÀÛ
-			g_nGameState = RUNNING;							// 2ÃÊÈÄ Running·Î ¹Ù²Þ
+	switch (g_nGameState) {									// ê²Œìž„ì˜ í˜„ìž¬ ìƒíƒœ(ì´ˆê¸° ê°’ì€ INIT)
+	case READY:												// ì¤€ë¹„
+		if (CurTime - g_UpdateOldTime > 3000) {				// ê²Œìž„ì‹œìž‘í›„ 2ì´ˆí›„ ìžë™ìœ¼ë¡œ ì‹œìž‘
+			g_nGameState = RUNNING;							// 2ì´ˆí›„ Runningë¡œ ë°”ê¿ˆ
 			g_GameStartTime = CurTime;
 		}
 		break;
 
-	case RUNNING: // °ÔÀÓ»óÅÂ ÁøÇàÁß
-		g_RemainTime = (g_StageInfo[g_nStage].LimitTime - (CurTime - g_GameStartTime)) / 1000; // °ÔÀÓ ÁøÇà ³²Àº ½Ã°£ ( Á¦ÇÑ½Ã°£ - (ÇöÀç½Ã°£ - °ÔÀÓ½ÃÀÛ ½Ã°£) / 1ÃÊ )  1ÃÊ´Â ¹Ð¸®ÃÊ ´ÜÀ§¸¦ ÃÊ ´ÜÀ§·Î Ç¥Çö ÇÏ±â À§ÇØ¼­ ³ª´©ÁØ´Ù.
+	case RUNNING: // ê²Œìž„ìƒíƒœ ì§„í–‰ì¤‘
+		g_RemainTime = (g_StageInfo[g_nStage].LimitTime - (CurTime - g_GameStartTime)) / 1000; // ê²Œìž„ ì§„í–‰ ë‚¨ì€ ì‹œê°„ ( ì œí•œì‹œê°„ - (í˜„ìž¬ì‹œê°„ - ê²Œìž„ì‹œìž‘ ì‹œê°„) / 1ì´ˆ )  1ì´ˆëŠ” ë°€ë¦¬ì´ˆ ë‹¨ìœ„ë¥¼ ì´ˆ ë‹¨ìœ„ë¡œ í‘œí˜„ í•˜ê¸° ìœ„í•´ì„œ ë‚˜ëˆ„ì¤€ë‹¤.
 
-		if ((CurTime - g_GameStartTime) > g_StageInfo[g_nStage].LimitTime || g_nBlockCount == g_StageInfo[g_nStage].nBlockCount) { // ÇöÀç ÀÌ ÄÚµå´Â Á¦ÇÑ½Ã°£ÀÌ Áö³ª°Å³ª ºí·ÏÀÇ °³¼ö°¡ ¸ðµÎ Á¦°Å µÇ¾úÀ»¶§ °ÔÀÓ »óÅÂ¸¦ STOPÀ¸·Î ÇØÁØ´Ù.
-			g_nGameState = STOP;	// °ÔÀÓ ÁßÁö
+		if ((CurTime - g_GameStartTime) > g_StageInfo[g_nStage].LimitTime || g_nBlockCount == g_StageInfo[g_nStage].nBlockCount) { // í˜„ìž¬ ì´ ì½”ë“œëŠ” ì œí•œì‹œê°„ì´ ì§€ë‚˜ê±°ë‚˜ ë¸”ë¡ì˜ ê°œìˆ˜ê°€ ëª¨ë‘ ì œê±° ë˜ì—ˆì„ë•Œ ê²Œìž„ ìƒíƒœë¥¼ STOPìœ¼ë¡œ í•´ì¤€ë‹¤.
+			g_nGameState = STOP;	// ê²Œìž„ ì¤‘ì§€
 			return;
 		}
-		else if (g_sBall.nReady == 0) {	// °ÔÀÓÀÌ ÁøÇàÁß
+		else if (g_sBall.nReady == 0) {	// ê²Œìž„ì´ ì§„í–‰ì¤‘
 
-			// ÀÌ ÄÚµå°¡ ¾øÀ¸¸é °øÀÌ ÇÑ¹ø¿¡ ¿©·¯ Ä­¾¿ ¿òÁ÷¿©¼­ °ÔÀÓÀÇ ±ÔÄ¢À» ÁöÅ°Áö ¾ÊÀ» ¼ö ÀÖ±â ¶§¹®¿¡ Áß¿äÇÑ ÄÚµå
-			if (CurTime - g_sBall.OldTime > g_sBall.MoveTime) { // ÇöÀç ½Ã°£°ú ÀÌÀü °øÀÌ ¿òÁ÷ÀÎ ½Ã°£ÀÇ Â÷°¡ °øÀÌ ÇÑ ¹ø¿¡ ¿òÁ÷ÀÏ ¶§ °É¸®´Â ½Ã°£º¸´Ù Å©¸é ¹Ø ÄÚµå ½ÇÇà
-				g_sBall.OldTime = CurTime;	// Çö½Ã°£À» ¿¹Àü½Ã°£¿¡´Ù°¡ ³Ö¾îÁØ´Ù.
+			// ì´ ì½”ë“œê°€ ì—†ìœ¼ë©´ ê³µì´ í•œë²ˆì— ì—¬ëŸ¬ ì¹¸ì”© ì›€ì§ì—¬ì„œ ê²Œìž„ì˜ ê·œì¹™ì„ ì§€í‚¤ì§€ ì•Šì„ ìˆ˜ ìžˆê¸° ë•Œë¬¸ì— ì¤‘ìš”í•œ ì½”ë“œ
+			if (CurTime - g_sBall.OldTime > g_sBall.MoveTime) { // í˜„ìž¬ ì‹œê°„ê³¼ ì´ì „ ê³µì´ ì›€ì§ì¸ ì‹œê°„ì˜ ì°¨ê°€ ê³µì´ í•œ ë²ˆì— ì›€ì§ì¼ ë•Œ ê±¸ë¦¬ëŠ” ì‹œê°„ë³´ë‹¤ í¬ë©´ ë°‘ ì½”ë“œ ì‹¤í–‰
+				g_sBall.OldTime = CurTime;	// í˜„ì‹œê°„ì„ ì˜ˆì „ì‹œê°„ì—ë‹¤ê°€ ë„£ì–´ì¤€ë‹¤.
 
-				switch (g_sBall.nDirect)	// °øÀÇ ¹æÇâ
+				switch (g_sBall.nDirect)	// ê³µì˜ ë°©í–¥
 				{
-				case TOP:													// À§ÂÊÀÏ½Ã
-					if (Collision(g_sBall.nX, g_sBall.nY - 1) == 0) {		// °øÀÇ Ãæµ¹°Ë»ç( -1À» ÇØÁÖ´Â ÀÌÀ¯´Â °øÀÇ À§ÂÊ¿¡ ÀÖ´Â º®µ¹°úÀÇ Ãæµ¹ ¿©ºÎ°¡ ÀÖ´ÂÁö È®ÀÎÇÏ±â À§ÇØ ÀÖ½À´Ï´Ù.)
-						g_sBall.nY--;										// °ø À§·Î
+				case TOP:													// ìœ„ìª½ì¼ì‹œ
+					if (Collision(g_sBall.nX, g_sBall.nY - 1) == 0) {		// ê³µì˜ ì¶©ëŒê²€ì‚¬( -1ì„ í•´ì£¼ëŠ” ì´ìœ ëŠ” ê³µì˜ ìœ„ìª½ì— ìžˆëŠ” ë²½ëŒê³¼ì˜ ì¶©ëŒ ì—¬ë¶€ê°€ ìžˆëŠ”ì§€ í™•ì¸í•˜ê¸° ìœ„í•´ ìžˆìŠµë‹ˆë‹¤.)
+						g_sBall.nY--;										// ê³µ ìœ„ë¡œ
 					}
 					break;
-				case LEFT_TOP:												// À§ÂÊ ¿ÞÂÊ ´ë°¢¼±
-					if (Collision(g_sBall.nX + 1, g_sBall.nY - 1) == 0) {	// °øÀÇ Ãæµ¹ ¿©ºÎ¸¦ ³ªÅ¸³»´Â ¹®Àå Ãæµ¹ÀÌ ¾øÀ»½Ã ¹Ø ÄÚµå ½ÇÇà
-						g_sBall.nX++;										// °ø ¿ÞÂÊ
-						g_sBall.nY--;										// °ø À§·Î
+				case LEFT_TOP:												// ìœ„ìª½ ì™¼ìª½ ëŒ€ê°ì„ 
+					if (Collision(g_sBall.nX + 1, g_sBall.nY - 1) == 0) {	// ê³µì˜ ì¶©ëŒ ì—¬ë¶€ë¥¼ ë‚˜íƒ€ë‚´ëŠ” ë¬¸ìž¥ ì¶©ëŒì´ ì—†ì„ì‹œ ë°‘ ì½”ë“œ ì‹¤í–‰
+						g_sBall.nX++;										// ê³µ ì™¼ìª½
+						g_sBall.nY--;										// ê³µ ìœ„ë¡œ
 					}
 					break;
-				case LEFT_DOWN:												// ¹ØÂÊ ¿ÞÂÊ ´ë°¢¼±
-					if (Collision(g_sBall.nX + 1, g_sBall.nY + 1) == 0) {	// °øÀÇ Ãæµ¹ ¿©ºÎ¸¦ ³ªÅ¸³»´Â ¹®Àå Ãæµ¹ÀÌ ¾øÀ»½Ã ¹Ø ÄÚµå ½ÇÇà
-						g_sBall.nX++;										// °ø ¿ÞÂÊ
-						g_sBall.nY++;										// °ø À§·Î
+				case LEFT_DOWN:												// ë°‘ìª½ ì™¼ìª½ ëŒ€ê°ì„ 
+					if (Collision(g_sBall.nX + 1, g_sBall.nY + 1) == 0) {	// ê³µì˜ ì¶©ëŒ ì—¬ë¶€ë¥¼ ë‚˜íƒ€ë‚´ëŠ” ë¬¸ìž¥ ì¶©ëŒì´ ì—†ì„ì‹œ ë°‘ ì½”ë“œ ì‹¤í–‰
+						g_sBall.nX++;										// ê³µ ì™¼ìª½
+						g_sBall.nY++;										// ê³µ ìœ„ë¡œ
 					}
-					break;													// Å»Ãâ
-				case DOWN:													// ¹ØÀ¸·Î
-					if (Collision(g_sBall.nX, g_sBall.nY + 1) == 0)			// °øÀÇ Ãæµ¹ ¿©ºÎ¸¦ ³ªÅ¸³»´Â ¹®Àå Ãæµ¹ÀÌ ¾øÀ»½Ã ¹Ø ÄÚµå ½ÇÇà
-						g_sBall.nY++;										// °ø ¾Æ·¡ÂÊ
-					break;													// Å»Ãâ
-				case RIGHT_DOWN:											// ¹ØÂÊ ¿À¸¥ÂÊ ´ë°¢¼±
-					if (Collision(g_sBall.nX - 1, g_sBall.nY + 1) == 0) {	// °øÀÇ Ãæµ¹ ¿©ºÎ¸¦ ³ªÅ¸³»´Â ¹®Àå Ãæµ¹ÀÌ ¾øÀ»½Ã ¹Ø ÄÚµå ½ÇÇà
-						g_sBall.nX--;										// °ø ¿À¸¥ÂÊ		
-						g_sBall.nY++;										// °ø ¾Æ·¡·Î
+					break;													// íƒˆì¶œ
+				case DOWN:													// ë°‘ìœ¼ë¡œ
+					if (Collision(g_sBall.nX, g_sBall.nY + 1) == 0)			// ê³µì˜ ì¶©ëŒ ì—¬ë¶€ë¥¼ ë‚˜íƒ€ë‚´ëŠ” ë¬¸ìž¥ ì¶©ëŒì´ ì—†ì„ì‹œ ë°‘ ì½”ë“œ ì‹¤í–‰
+						g_sBall.nY++;										// ê³µ ì•„ëž˜ìª½
+					break;													// íƒˆì¶œ
+				case RIGHT_DOWN:											// ë°‘ìª½ ì˜¤ë¥¸ìª½ ëŒ€ê°ì„ 
+					if (Collision(g_sBall.nX - 1, g_sBall.nY + 1) == 0) {	// ê³µì˜ ì¶©ëŒ ì—¬ë¶€ë¥¼ ë‚˜íƒ€ë‚´ëŠ” ë¬¸ìž¥ ì¶©ëŒì´ ì—†ì„ì‹œ ë°‘ ì½”ë“œ ì‹¤í–‰
+						g_sBall.nX--;										// ê³µ ì˜¤ë¥¸ìª½		
+						g_sBall.nY++;										// ê³µ ì•„ëž˜ë¡œ
 					}
-					break;													// Å»Ãâ
-				case RIGHT_TOP:												// À§ ¿À¸¥ÂÊ ´ë°¢¼±
-					if (Collision(g_sBall.nX - 1, g_sBall.nY - 1) == 0) {	// °øÀÇ Ãæµ¹ ¿©ºÎ¸¦ ³ªÅ¸³»´Â ¹®Àå Ãæµ¹ÀÌ ¾øÀ»½Ã ¹Ø ÄÚµå ½ÇÇà
-						g_sBall.nX--;										// °ø ¿øÂÊ
-						g_sBall.nY--;										// °ø À§·Î
+					break;													// íƒˆì¶œ
+				case RIGHT_TOP:												// ìœ„ ì˜¤ë¥¸ìª½ ëŒ€ê°ì„ 
+					if (Collision(g_sBall.nX - 1, g_sBall.nY - 1) == 0) {	// ê³µì˜ ì¶©ëŒ ì—¬ë¶€ë¥¼ ë‚˜íƒ€ë‚´ëŠ” ë¬¸ìž¥ ì¶©ëŒì´ ì—†ì„ì‹œ ë°‘ ì½”ë“œ ì‹¤í–‰
+						g_sBall.nX--;										// ê³µ ì›ìª½
+						g_sBall.nY--;										// ê³µ ìœ„ë¡œ
 					}
-					break;													// Å»Ãâ
+					break;													// íƒˆì¶œ
 				}
 			}
 		}
-		break;																// Å»Ãâ
-	case STOP:	// °ÔÀÓ ¸ØÃã
-		// ¼º°øÀÌ³Ä ½ÇÆÐ¸¦ ÆÇ´ÜÇØÁÖ¾î¼­ Ãâ·ÂÀ» ÇØÁÖ´Â ºÎºÐÀÌ ¿Í¾ß ÇÑ´Ù.
-		if (g_nBlockCount == g_StageInfo[g_nStage].nBlockCount && g_sBall.nHP > 0 && g_RemainTime > 0) {	// ºí·°À» ÀüºÎ Á¦°ÅÇß°í Ã¼·Âµµ 0º¸´Ù ¸¹°í ½Ã°£ 0ÃÊÀÌ»óÀÌ¸é ¼º°øÀ¸·Î ÆÇ´Ü
-			g_UpdateOldTime = CurTime;	// ÇöÀç½Ã°£ ¿¹Àü½Ã°£À¸·Î ´ëÀÔ
-			g_nGameState = SUCCESS;		// ½ºÅ×ÀÌÁö ¼º°ø
+		break;																// íƒˆì¶œ
+	case STOP:	// ê²Œìž„ ë©ˆì¶¤
+		// ì„±ê³µì´ëƒ ì‹¤íŒ¨ë¥¼ íŒë‹¨í•´ì£¼ì–´ì„œ ì¶œë ¥ì„ í•´ì£¼ëŠ” ë¶€ë¶„ì´ ì™€ì•¼ í•œë‹¤.
+		if (g_nBlockCount == g_StageInfo[g_nStage].nBlockCount && g_sBall.nHP > 0 && g_RemainTime > 0) {	// ë¸”ëŸ­ì„ ì „ë¶€ ì œê±°í–ˆê³  ì²´ë ¥ë„ 0ë³´ë‹¤ ë§Žê³  ì‹œê°„ 0ì´ˆì´ìƒì´ë©´ ì„±ê³µìœ¼ë¡œ íŒë‹¨
+			g_UpdateOldTime = CurTime;	// í˜„ìž¬ì‹œê°„ ì˜ˆì „ì‹œê°„ìœ¼ë¡œ ëŒ€ìž…
+			g_nGameState = SUCCESS;		// ìŠ¤í…Œì´ì§€ ì„±ê³µ
 		}
 		else {
-			g_nGameState = FAILED;		// Á¶°ÇÀ» ¸¸Á·ÇÏÁö ¸øÇß´Ù¸é ½ºÅ×ÀÌÁö ½ÇÆÐ
+			g_nGameState = FAILED;		// ì¡°ê±´ì„ ë§Œì¡±í•˜ì§€ ëª»í–ˆë‹¤ë©´ ìŠ¤í…Œì´ì§€ ì‹¤íŒ¨
 		}
 		break;
-	case SUCCESS:						// °ÔÀÓÀÌ ¼º°øÀÏ¶§
-		if (CurTime - g_UpdateOldTime > 3000) {	// ÀÌ °ªÀº °ÔÀÓ ¾÷µ¥ÀÌÆ®°¡ ¾ó¸¶³ª ¿À·¡µÇ¾ú´ÂÁö¸¦ ³ªÅ¸³»¸ç, ÀÌ °ªÀÌ 3000º¸´Ù Å©¸é °ÔÀÓÀÌ ¼º°øÇÑ »óÅÂ¿¡¼­ 3ÃÊ°¡ °æ°úÇÑ °ÍÀ¸·Î ÆÇ´Ü
-			g_UpdateOldTime = CurTime;	// ÇöÀç½Ã°£À» ¿¹Àü½Ã°£À¸·Î ¾÷µ¥ÀÌÆ®
-			++g_nStage;					// ´ÙÀ½ ½ºÅ×ÀÌÁö
-			Init();						// ÃÊ±âÈ­
-			g_nGameState = READY;		// ÁØºñ »óÅÂ
+	case SUCCESS:						// ê²Œìž„ì´ ì„±ê³µì¼ë•Œ
+		if (CurTime - g_UpdateOldTime > 3000) {	// ì´ ê°’ì€ ê²Œìž„ ì—…ë°ì´íŠ¸ê°€ ì–¼ë§ˆë‚˜ ì˜¤ëž˜ë˜ì—ˆëŠ”ì§€ë¥¼ ë‚˜íƒ€ë‚´ë©°, ì´ ê°’ì´ 3000ë³´ë‹¤ í¬ë©´ ê²Œìž„ì´ ì„±ê³µí•œ ìƒíƒœì—ì„œ 3ì´ˆê°€ ê²½ê³¼í•œ ê²ƒìœ¼ë¡œ íŒë‹¨
+			g_UpdateOldTime = CurTime;	// í˜„ìž¬ì‹œê°„ì„ ì˜ˆì „ì‹œê°„ìœ¼ë¡œ ì—…ë°ì´íŠ¸
+			++g_nStage;					// ë‹¤ìŒ ìŠ¤í…Œì´ì§€
+			Init();						// ì´ˆê¸°í™”
+			g_nGameState = READY;		// ì¤€ë¹„ ìƒíƒœ
 		}
-		break;							// Å»Ãâ
+		break;							// íƒˆì¶œ
 	}
 }

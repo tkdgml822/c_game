@@ -8,11 +8,11 @@ void ScreenInit()
 {
 	CONSOLE_CURSOR_INFO cci;
 
-	// °¡»óÀÇ ÄÜ¼ÖÃ¢ 2°³·ê ¸¸µç´Ù.
+	// ê°€ìƒì˜ ì½˜ì†”ì°½ 2ê°œë£° ë§Œë“ ë‹¤.
 	g_hScreen[0] = CreateConsoleScreenBuffer(GENERIC_READ | GENERIC_WRITE, 0, NULL, CONSOLE_TEXTMODE_BUFFER, NULL);
 	g_hScreen[1] = CreateConsoleScreenBuffer(GENERIC_READ | GENERIC_WRITE, 0, NULL, CONSOLE_TEXTMODE_BUFFER, NULL);
 
-	// Ä¿¼­ ¼û±â±â
+	// ì»¤ì„œ ìˆ¨ê¸°ê¸°
 	cci.dwSize = 1;
 	cci.bVisible = FALSE;
 	SetConsoleCursorInfo(g_hScreen[0], &cci);
@@ -44,7 +44,7 @@ void ScreenPrint(int x, int y, char* string) {
 	WriteFile(g_hScreen[g_nScreenIndex], string, strlen(string), &dw, NULL);
 }
 
-// 1 ~ 15 ±îÁö »ö»ó ¼³Á¤ °¡´É
+// 1 ~ 15 ê¹Œì§€ ìƒ‰ìƒ ì„¤ì • ê°€ëŠ¥
 void SetColor(unsigned short color) {
 	SetConsoleTextAttribute(g_hScreen[g_nScreenIndex], color);
 }

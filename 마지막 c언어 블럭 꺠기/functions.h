@@ -5,15 +5,15 @@
 #include <conio.h>
 #include "Screen.h"
 
-void InitScreen(void);		// ¼Ò°³ ÀÎÅÍÆäÀÌ½º
-void ReadyScreen(void);		// ÁØºñ ÀÎÅÍÆäÀÌ½º
-void SuccessScreen(void);	// ¼º°ø ÀÎÅÍÆäÀÌ½º
-void FailureScreen(void);	// ½ÇÆĞ ÀÎÅÍÆäÀÌ½º
-void RunningScreen(void);	// ÀÛµ¿Áß ÀÎÅÍÆäÀÌ½º
+void InitScreen(void);		// ì†Œê°œ ì¸í„°í˜ì´ìŠ¤
+void ReadyScreen(void);		// ì¤€ë¹„ ì¸í„°í˜ì´ìŠ¤
+void SuccessScreen(void);	// ì„±ê³µ ì¸í„°í˜ì´ìŠ¤
+void FailureScreen(void);	// ì‹¤íŒ¨ ì¸í„°í˜ì´ìŠ¤
+void RunningScreen(void);	// ì‘ë™ì¤‘ ì¸í„°í˜ì´ìŠ¤
 
-int Collision(int, int);	// Ãæµ¹ ±â´É
-void Update(void);			// °ÔÀÓ»óÅÂ ¾÷µ¥ÀÌÆ®
-void Init(void);			// ±âº»°ª
-void Render(void);			// È­¸é Ç¥½Ã
-void SetBlock(int);			// ºí·° ¹èÄ¡
-int Search(int, int, int);	// ºí·° Áßº¹ ¹æÁö
+int Collision(int, int);	// ì¶©ëŒ ê¸°ëŠ¥
+void Update(void);			// ê²Œì„ìƒíƒœ ì—…ë°ì´íŠ¸
+void Init(void);			// ê¸°ë³¸ê°’
+void Render(void);			// í™”ë©´ í‘œì‹œ
+void SetBlock(int);			// ë¸”ëŸ­ ë°°ì¹˜
+int Search(int, int, int);	// ë¸”ëŸ­ ì¤‘ë³µ ë°©ì§€

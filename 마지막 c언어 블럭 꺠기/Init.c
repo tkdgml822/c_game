@@ -9,10 +9,7 @@ void Init() {
 
 	}
 
-	// 파일을 열어서 파일 내의 데이터를 읽어낸다.
-	// 게임을 플레이하면서 저장된 최고 점수를 저장하고 있는 파일로 추측
-	//  파일이 존재하지 않는 경우 (즉, 이전에 게임을 플레이하지 않은 경우) g_nBestGrade 변수를 0으로 초기화합니다.
-	// 그렇지 않은 경우 파일에서 읽어들인 최고 점수를 g_nBestGrade 변수에 저장합니다.
+	// database가 추가되면 삭제 예정
 	FILE* file = fopen("score.dat", "rt");
 	if (file == 0) { g_nBestGrade = 0; }
 	else {
