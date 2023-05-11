@@ -2,90 +2,90 @@
 #include "MyVariable.h"
 #include <stdio.h>
 
-// í™”ë©´ í‘œì‹œ
+// È­¸é Ç¥½Ã
 void Render() {
-	char string[100];			// ë¬¸ìì—´
+	char string[100];			// ¹®ÀÚ¿­
 
-	ScreenClear();				// ë²„í¼ ì‚­ì œ
+	ScreenClear();				// ¹öÆÛ »èÁ¦
 
-	switch (g_nGameState) {		// í˜„ì¬ ê²Œì„ ìƒíƒœ
-	case INIT:					// ì´ˆê¸° ìƒíƒœ 
-		if (g_nStage == 0)		// ì²«ë²ˆì§¸ ë§µì¼ ê²½ìš°
-			InitScreen();		// ê²Œì„ ì†Œê°œ ì¸í„°í˜ì´ìŠ¤
-		break;					// íƒˆì¶œ
+	switch (g_nGameState) {		// ÇöÀç °ÔÀÓ »óÅÂ
+	case INIT:					// ÃÊ±â »óÅÂ 
+		if (g_nStage == 0)		// Ã¹¹øÂ° ¸ÊÀÏ °æ¿ì
+			InitScreen();		// °ÔÀÓ ¼Ò°³ ÀÎÅÍÆäÀÌ½º
+		break;					// Å»Ãâ
 
-	case READY:					// ì¤€ë¹„ìƒíƒœ
-		ReadyScreen();			// ì¤€ë¹„ìƒíƒœ ì¸í„°í˜ì´ìŠ¤
-		sprintf_s(string, sizeof(string), "%d", g_nStage + 1); // ì •ìˆ˜ë¥¼ ë¬¸ìì—´ë¡œ ë³€í™˜ (ìŠ¤í…Œì´ì§€)
-		ScreenPrint(13, 7, string);	// ë°”ë€ ë¬¸ìì—´ í™”ë©´ ì¶œë ¥
-		break;					// íƒˆì¶œ
-	case RUNNING:				// ì‘ë™ ì¤‘
-		RunningScreen();		// ì‘ë™ ì¤‘ ì¼ë•Œ ì¸í„°í˜ì´ìŠ¤
+	case READY:					// ÁØºñ»óÅÂ
+		ReadyScreen();			// ÁØºñ»óÅÂ ÀÎÅÍÆäÀÌ½º
+		sprintf_s(string, sizeof(string), "%d", g_nStage + 1); // Á¤¼ö¸¦ ¹®ÀÚ¿­·Î º¯È¯ (½ºÅ×ÀÌÁö)
+		ScreenPrint(13, 7, string);	// ¹Ù²ï ¹®ÀÚ¿­ È­¸é Ãâ·Â
+		break;					// Å»Ãâ
+	case RUNNING:				// ÀÛµ¿ Áß
+		RunningScreen();		// ÀÛµ¿ Áß ÀÏ¶§ ÀÎÅÍÆäÀÌ½º
 
-		sprintf_s(string, sizeof(string), "ìŠ¤í…Œì´ì§€ : %d", g_nStage + 1);	// ì •ìˆ˜í˜•ì„ ë¬¸ìì—´ë¡œ ë³€ê²½(í˜„ì¬ ìŠ¤í…Œì´ì§€)
-		ScreenPrint(45, 2, string);											// ë³€ê²½ëœ ë¬¸ìì—´ í™”ë©´ ì¶œë ¥
+		sprintf_s(string, sizeof(string), "½ºÅ×ÀÌÁö : %d", g_nStage + 1);	// Á¤¼öÇüÀ» ¹®ÀÚ¿­·Î º¯°æ(ÇöÀç ½ºÅ×ÀÌÁö)
+		ScreenPrint(45, 2, string);											// º¯°æµÈ ¹®ÀÚ¿­ È­¸é Ãâ·Â
 
-		sprintf_s(string, sizeof(string), "ìƒëª… : %d ", g_sBall.nHP);		// ì •ìˆ˜í˜•ì„ ë¬¸ìì—´ë¡œ ë³€ê²½(ê³µì˜ ì²´ë ¥)
-		ScreenPrint(45, 4, string);											// ë³€ê²½ëœ ë¬¸ìì—´ í™”ë©´ ì¶œë ¥
+		sprintf_s(string, sizeof(string), "»ı¸í : %d ", g_sBall.nHP);		// Á¤¼öÇüÀ» ¹®ÀÚ¿­·Î º¯°æ(°øÀÇ Ã¼·Â)
+		ScreenPrint(45, 4, string);											// º¯°æµÈ ¹®ÀÚ¿­ È­¸é Ãâ·Â
 
-		sprintf_s(string, sizeof(string), "ì ìˆ˜ : %d ", g_nGrade);			// ì •ìˆ˜í˜•ì„ ë¬¸ìì—´ë¡œ ë³€ê²½(ì ìˆ˜)
-		ScreenPrint(45, 6, string);											// ë³€ê²½ëœ ë¬¸ìì—´ í™”ë©´ ì¶œë ¥
+		sprintf_s(string, sizeof(string), "Á¡¼ö : %d ", g_nGrade);			// Á¤¼öÇüÀ» ¹®ÀÚ¿­·Î º¯°æ(Á¡¼ö)
+		ScreenPrint(45, 6, string);											// º¯°æµÈ ¹®ÀÚ¿­ È­¸é Ãâ·Â
 
-		sprintf_s(string, sizeof(string), "ë‚¨ì€ ì‹œê°„ : %d ë¶„ %d ì´ˆ", g_RemainTime / 60, g_RemainTime % 60);// ì‹œê°„ì„ ë¬¸ìì—´ë¡œ ë³€ê²½(ë¶„ ì´ˆ)
-		ScreenPrint(45, 8, string);											// ë³€ê²½ëœ ë¬¸ìì—´ í™”ë©´ ì¶œë ¥
+		sprintf_s(string, sizeof(string), "³²Àº ½Ã°£ : %d ºĞ %d ÃÊ", g_RemainTime / 60, g_RemainTime % 60);// ½Ã°£À» ¹®ÀÚ¿­·Î º¯°æ(ºĞ ÃÊ)
+		ScreenPrint(45, 8, string);											// º¯°æµÈ ¹®ÀÚ¿­ È­¸é Ãâ·Â
 
-		sprintf_s(string, sizeof(string), "BEST SCORE : %d", g_nBestGrade);	// ì •ìˆ˜í˜•ì„ ë¬¸ìì—´ë¡œ ë³€ê²½(ìµœê³ ì ìˆ˜)
-		ScreenPrint(45, 10, string);										// ë³€ê²½ëœ ë¬¸ìì—´ í™”ë©´ ì¶œë ¥
+		sprintf_s(string, sizeof(string), "BEST SCORE : %d", g_nBestGrade);	// Á¤¼öÇüÀ» ¹®ÀÚ¿­·Î º¯°æ(ÃÖ°íÁ¡¼ö)
+		ScreenPrint(45, 10, string);										// º¯°æµÈ ¹®ÀÚ¿­ È­¸é Ãâ·Â
 
 
-		for (int i = 0; i < g_StageInfo[g_nStage].nBlockCount; i++) {		// ë¸”ëŸ­ì˜ ê°¯ìˆ˜ë§Œí¼ ë°˜ë³µ
-			if (g_sBlock[i].nLife == 1)										// ë¸”ëŸ­ì˜ ì²´ë ¥ì´ 1ì¼ë•Œ
-				ScreenPrint(g_sBlock[i].nX, g_sBlock[i].nY, "â–¥");			// ë°˜ë³µë˜ëŠ” ìˆ˜ë§Œí¼ í™”ë©´ ì¶œë ¥
+		for (int i = 0; i < g_StageInfo[g_nStage].nBlockCount; i++) {		// ºí·°ÀÇ °¹¼ö¸¸Å­ ¹İº¹
+			if (g_sBlock[i].nLife == 1)										// ºí·°ÀÇ Ã¼·ÂÀÌ 1ÀÏ¶§
+				ScreenPrint(g_sBlock[i].nX, g_sBlock[i].nY, "¢È");			// ¹İº¹µÇ´Â ¼ö¸¸Å­ È­¸é Ãâ·Â
 		}
 
-		for (int i = 0; i < 3; i++)											// ë§‰ëŒ€ê¸°ì˜ ë¸”ëŸ­ë§Œí¼ ë°˜ë³µ(3ë²ˆ)
+		for (int i = 0; i < 3; i++)											// ¸·´ë±âÀÇ ºí·°¸¸Å­ ¹İº¹(3¹ø)
 		{
-			SetColor(14);													// ë§‰ëŒ€ê¸° ìƒ‰ì€ ë…¸ë€ìƒ‰
-			ScreenPrint(g_sBar.nX[i], g_sBar.nY, "â– ");						// ë§‰ëŒ€ê¸° ì¶œë ¥
+			SetColor(14);													// ¸·´ë±â »öÀº ³ë¶õ»ö
+			ScreenPrint(g_sBar.nX[i], g_sBar.nY, "¡á");						// ¸·´ë±â Ãâ·Â
 		}
-		SetColor(14);														// ê³µì˜ ìƒ‰ê¹” ë…¸ë€ìƒ‰
-		ScreenPrint(g_sBall.nX, g_sBall.nY, "â—");							// ê³µì¶œë ¥
-		SetColor(7);														// ìƒ‰ ë‹¤ì‹œ ì›ìƒíƒœë¡œ
-		break;																// íƒˆì¶œ
-	case SUCCESS:															// ì„±ê³µ ì¼ì‹œ 
-		SuccessScreen();													// ì„±ê³µ ì¸í„°í˜ì´ìŠ¤ ì¶œë ¥
-		sprintf_s(string, sizeof(string), "%d Stage", g_nStage + 1);		// ì •ìˆ˜í˜• ìŠ¤í…Œì´ì§€ë³€ìˆ˜ ë¬¸ìì—´ë¡œ ë³€ê²½ 
-		ScreenPrint(19, 12, string);										// ë³€ê²½ëœ ë¬¸ìì—´ ì¶œë ¥
-		sprintf_s(string, sizeof(string), "ì´ì : %d", g_nGrade);			// ì •ìˆ˜í˜• ì ìˆ˜ ë¬¸ìì—´ë¡œ ë³€ê²½
-		ScreenPrint(25, 16, string);										// ë³€ê²½ëœ ë¬¸ìì—´ ì¶œë ¥
-		break;																// íƒˆì¶œ
-	case FAILED:															// ì‹¤íŒ¨ì‹œ
-		FailureScreen();													// ì‹¤íŒ¨ ì¸í„°í˜ì´ìŠ¤ ë›°ìœ„ê¸°
-		sprintf_s(string, sizeof(string), "%d Stage!", g_nStage + 1);		// ì •ìˆ˜í˜• ìŠ¤í…Œì´ì§€ë³€ìˆ˜ ë¬¸ìì—´ë¡œ ë³€ê²½
-		ScreenPrint(16, 4, string);											// ë³€ê²½ëœ ë¬¸ìì—´ ì¶œë ¥
-		break;																// íƒˆì¶œ
+		SetColor(14);														// °øÀÇ »ö±ò ³ë¶õ»ö
+		ScreenPrint(g_sBall.nX, g_sBall.nY, "¡Ü");							// °øÃâ·Â
+		SetColor(7);														// »ö ´Ù½Ã ¿ø»óÅÂ·Î
+		break;																// Å»Ãâ
+	case SUCCESS:															// ¼º°ø ÀÏ½Ã 
+		SuccessScreen();													// ¼º°ø ÀÎÅÍÆäÀÌ½º Ãâ·Â
+		sprintf_s(string, sizeof(string), "%d Stage", g_nStage + 1);		// Á¤¼öÇü ½ºÅ×ÀÌÁöº¯¼ö ¹®ÀÚ¿­·Î º¯°æ 
+		ScreenPrint(19, 12, string);										// º¯°æµÈ ¹®ÀÚ¿­ Ãâ·Â
+		sprintf_s(string, sizeof(string), "ÃÑÁ¡: %d", g_nGrade);			// Á¤¼öÇü Á¡¼ö ¹®ÀÚ¿­·Î º¯°æ
+		ScreenPrint(25, 16, string);										// º¯°æµÈ ¹®ÀÚ¿­ Ãâ·Â
+		break;																// Å»Ãâ
+	case FAILED:															// ½ÇÆĞ½Ã
+		FailureScreen();													// ½ÇÆĞ ÀÎÅÍÆäÀÌ½º ¶ÙÀ§±â
+		sprintf_s(string, sizeof(string), "%d Stage!", g_nStage + 1);		// Á¤¼öÇü ½ºÅ×ÀÌÁöº¯¼ö ¹®ÀÚ¿­·Î º¯°æ
+		ScreenPrint(16, 4, string);											// º¯°æµÈ ¹®ÀÚ¿­ Ãâ·Â
+		break;																// Å»Ãâ
 
-	case RESULT:															// ê²°ê³¼
-		ResultScreen();														// ê²°ê³¼ í™”ë©´
-		sprintf_s(string, sizeof(string), "%d", g_nGrade);					// ì •ìˆ˜í˜•ë³€ìˆ˜(ì ìˆ˜) ë¬¸ìì—´ë¡œ ë³€ê²½
-		ScreenPrint(25, 11, string);										// ë³€ê²½ëœ ë¬¸ìì—´ ì¶œë ¥
+	case RESULT:															// °á°ú
+		ResultScreen();														// °á°ú È­¸é
+		sprintf_s(string, sizeof(string), "%d", g_nGrade);					// Á¤¼öÇüº¯¼ö(Á¡¼ö) ¹®ÀÚ¿­·Î º¯°æ
+		ScreenPrint(25, 11, string);										// º¯°æµÈ ¹®ÀÚ¿­ Ãâ·Â
 
-		g_nlastGrade = g_nGrade;											// í˜„ì¬ ì ìˆ˜ ë§ˆì§€ë§‰ ì ìˆ˜ì—ë‹¤ê°€ ëŒ€ì…
+		g_nlastGrade = g_nGrade;											// ÇöÀç Á¡¼ö ¸¶Áö¸· Á¡¼ö¿¡´Ù°¡ ´ëÀÔ
 
-		if (g_nlastGrade > g_nBestGrade) {									// ì´ì „ê¹Œì§€ì˜ ìµœê³  ì ìˆ˜(g_nBestGrade)ë³´ë‹¤ ìƒˆë¡œìš´ ì ìˆ˜(g_nlastGrade)ê°€ ë†’ì€ì§€ í™•ì¸í•©ë‹ˆë‹¤.
-			FILE* file = fopen("score.dat", "wt");							// "score.dat" íŒŒì¼ì„ ì“°ê¸° ëª¨ë“œ("wt")ë¡œ ì—½ë‹ˆë‹¤
-			ScreenPrint(10, 13, "-------BEST SCORE !!-------");				// í™”ë©´ì— ë©”ì‹œì§€ë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤.
-			if (file == 0) {												// íŒŒì¼ ì—´ê¸°ì— ì‹¤íŒ¨í•œ ê²½ìš° ì˜¤ë¥˜ ë©”ì‹œì§€ë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤.
-				ScreenPrint(25, 12, "FILE ERROR: SYSTEM CANNOT WRITE BEST SCORE ON \"SCORE.DAT "); // ì˜¤ë¥˜ ë©”ì‹œì§€ ì¶œë ¥
+		if (g_nlastGrade > g_nBestGrade) {									// ÀÌÀü±îÁöÀÇ ÃÖ°í Á¡¼ö(g_nBestGrade)º¸´Ù »õ·Î¿î Á¡¼ö(g_nlastGrade)°¡ ³ôÀºÁö È®ÀÎÇÕ´Ï´Ù.
+			FILE* file = fopen("score.dat", "wt");							// "score.dat" ÆÄÀÏÀ» ¾²±â ¸ğµå("wt")·Î ¿±´Ï´Ù
+			ScreenPrint(10, 13, "-------BEST SCORE !!-------");				// È­¸é¿¡ ¸Ş½ÃÁö¸¦ Ãâ·ÂÇÕ´Ï´Ù.
+			if (file == 0) {												// ÆÄÀÏ ¿­±â¿¡ ½ÇÆĞÇÑ °æ¿ì ¿À·ù ¸Ş½ÃÁö¸¦ Ãâ·ÂÇÕ´Ï´Ù.
+				ScreenPrint(25, 12, "FILE ERROR: SYSTEM CANNOT WRITE BEST SCORE ON \"SCORE.DAT "); // ¿À·ù ¸Ş½ÃÁö Ãâ·Â
 			}
 			else {
-				fprintf(file, "%d", g_nlastGrade);							// ìƒˆë¡œìš´ ìµœê³  ì ìˆ˜ë¥¼ "score.dat" íŒŒì¼ì— ì”ë‹ˆë‹¤. g_nlastGradeì´ ì“°ê³ ì í•˜ëŠ” ë‚´ìš©ì…ë‹ˆë‹¤. 
-				fclose(file);												// íŒŒì¼ì„ ë‹«ìŠµë‹ˆë‹¤.
-				g_nlastGrade = 0;											// ìƒˆë¡œìš´ ìµœê³  ì ìˆ˜ë¥¼ ê¸°ë¡í•œ í›„, ë§ˆì§€ë§‰ ì ìˆ˜(g_nlastGrade)ë¥¼ 0ìœ¼ë¡œ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
+				fprintf(file, "%d", g_nlastGrade);							// »õ·Î¿î ÃÖ°í Á¡¼ö¸¦ "score.dat" ÆÄÀÏ¿¡ ¾¹´Ï´Ù. g_nlastGradeÀÌ ¾²°íÀÚ ÇÏ´Â ³»¿ëÀÔ´Ï´Ù. 
+				fclose(file);												// ÆÄÀÏÀ» ´İ½À´Ï´Ù.
+				g_nlastGrade = 0;											// »õ·Î¿î ÃÖ°í Á¡¼ö¸¦ ±â·ÏÇÑ ÈÄ, ¸¶Áö¸· Á¡¼ö(g_nlastGrade)¸¦ 0À¸·Î ÃÊ±âÈ­ÇÕ´Ï´Ù.
 			}
 		}
 
-		break;																// íƒˆì¶œ
+		break;																// Å»Ãâ
 	}
-	ScreenFlipping();														// í˜„ì¬ ì‚¬ìš© ì¤‘ì¸ ì½˜ì†” ì°½ ë²„í¼ì™€ ë‹¤ìŒì— ì‚¬ìš©í•  ì½˜ì†” ì°½ ë²„í¼ë¥¼ ë²ˆê°ˆì•„ê°€ë©° í™”ë©´ì— ë³´ì—¬ì¤€ë‹¤.(í™”ë©´ì„ êµì²´í•˜ëŠ” ì—­í• )
+	ScreenFlipping();														// ÇöÀç »ç¿ë ÁßÀÎ ÄÜ¼Ö Ã¢ ¹öÆÛ¿Í ´ÙÀ½¿¡ »ç¿ëÇÒ ÄÜ¼Ö Ã¢ ¹öÆÛ¸¦ ¹ø°¥¾Æ°¡¸ç È­¸é¿¡ º¸¿©ÁØ´Ù.(È­¸éÀ» ±³Ã¼ÇÏ´Â ¿ªÇÒ)
 }
