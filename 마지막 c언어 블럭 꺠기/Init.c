@@ -37,7 +37,7 @@ void Init() {
 	g_sBar.nX[0] = g_sBall.nX - 2;							// 막대기 왼쪽 공x 축 -2로 지정
 	g_sBar.nX[1] = g_sBall.nX;								// 막대기 중간 x 공 위치랑 똑같이 지정
 	g_sBar.nX[2] = g_sBall.nX + 2;							// 막대 오른쪽 공x 축 +2로 지정
-	g_sBar.MoveTime = 1;									// 막대기의 속도 1로 지정
+	g_sBar.MoveTime = 0.05;									// 막대기의 속도 1로 지정
 	g_sBar.OldTime = clock();								// 현재 시간 OldTime에 담기
 
 	g_nBlockCount = 0;										// 블럭이 부딪힌 수 0
