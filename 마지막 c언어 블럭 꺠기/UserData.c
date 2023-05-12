@@ -8,12 +8,43 @@
 #define DB_PASS "abc123"
 #define DB_NAME "test"
 
+void gotoxy(int x, int y) {
+	COORD pos = { x,y };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+}
+
 
 int UserData(void) {
 	MYSQL con = { 0 };
 	MYSQL* connection = NULL;
 	MYSQL_RES* result = NULL;
 	MYSQL_ROW row = { 0 };
+	int i = 3;
+
+	gotoxy(0,  0); printf("▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣");
+	gotoxy(0,  1); printf("▣       Name               score         ▣");
+	gotoxy(0,  2); printf("▣                                        ▣");
+	gotoxy(0,  3); printf("▣                                        ▣");
+	gotoxy(0,  4); printf("▣                                        ▣");
+	gotoxy(0,  5); printf("▣                                        ▣");
+	gotoxy(0,  6); printf("▣                                        ▣");
+	gotoxy(0,  7); printf("▣                                        ▣");
+	gotoxy(0,  8); printf("▣                                        ▣");
+	gotoxy(0,  9); printf("▣                                        ▣");
+	gotoxy(0, 10); printf("▣                                        ▣");
+	gotoxy(0, 11); printf("▣                                        ▣");
+	gotoxy(0, 12); printf("▣                                        ▣");
+	gotoxy(0, 13); printf("▣                                        ▣");
+	gotoxy(0, 14); printf("▣                                        ▣");
+	gotoxy(0, 15); printf("▣                                        ▣");
+	gotoxy(0, 16); printf("▣                                        ▣");
+	gotoxy(0, 17); printf("▣                                        ▣");
+	gotoxy(0, 18); printf("▣                                        ▣");
+	gotoxy(0, 19); printf("▣                                        ▣");
+	gotoxy(0, 20); printf("▣                                        ▣");
+	gotoxy(0, 21); printf("▣                                        ▣");
+	gotoxy(0, 22); printf("▣                                        ▣");
+	gotoxy(0, 23); printf("▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣");
 
 	// 초기화
 	mysql_init(&con);
@@ -28,19 +59,17 @@ int UserData(void) {
 		return 0;
 	}
 
-	mysql_query(connection, "select * from user");
+	mysql_query(connection, "select * from user order by user_score desc limit 10;");
 	result = mysql_store_result(connection);
 
-	printf("==========================\n");
-	printf("   이름            점수\n");
-	printf("==========================\n");
-
 	while ((row = mysql_fetch_row(result)) != NULL) { // null이 아닐때 까지 읽어와라
-		printf("   %s              %s\n", row[0], row[1]);
+		gotoxy(8, i);
+		printf("%s                %s\n", row[1], row[3]);
+		i++;
 	}
-	printf("==========================\n");
 
-	printf("값 출력 아무 키나 입력");
+	gotoxy(14, 20);
+	printf("아무 키나 입력");
 	_getch();
 
 	return 1;

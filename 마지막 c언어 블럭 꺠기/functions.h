@@ -3,7 +3,6 @@
 #include <windows.h>
 #include <time.h>
 #include <conio.h>
-#include "Screen.h"
 
 int Collision(int, int);	// 충돌 기능
 void Update(void);			// 게임상태 업데이트

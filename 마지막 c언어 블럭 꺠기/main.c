@@ -3,6 +3,8 @@
 #include "structure.h"
 #include "MyVariable.h"
 #include "Interface.h"
+#include "Screen.h"
+
 #define KEYDOWN 80
 #define KEYLEFT 75
 #define KEYRINGT 77
@@ -14,7 +16,6 @@ int main(void) {
 
 	UserData();			// 유저 데이터
 
-	
 	ScreenInit();		// 콘솔 화면 버퍼 초기화
 	Init();				// 초기 상태 : 막대기, 공, 블럭 세팅
 
