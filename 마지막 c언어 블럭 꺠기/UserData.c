@@ -71,7 +71,7 @@ int UserData(void) {
 	}
 
 	gotoxy(14, 21);
-	printf("아무 키나 입력");
+	printf("아무 키나 입력"); // 아무키 입력
 	_getch();
 
 	mysql_close(connection);
