@@ -74,7 +74,7 @@ int UserData(void) {
 	printf("아무 키나 입력"); // 아무키 입력 
 	_getch(); // 키 받아오기
 
-	mysql_close(connection);
+	mysql_close(connection); // mysql 닫기
 
 	return 1;
 }
