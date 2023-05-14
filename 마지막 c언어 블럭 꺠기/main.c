@@ -15,6 +15,8 @@ int main(void) {
 	clock_t CurTime;	// 시간을 담을 변수 CurTime(현 시점) 선언
 
 	UserData();			// 유저 데이터
+	system("cls");
+	InputData();		// 데이터 입력
 
 	ScreenInit();		// 콘솔 화면 버퍼 초기화
 	Init();				// 초기 상태 : 막대기, 공, 블럭 세팅
