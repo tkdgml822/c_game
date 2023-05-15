@@ -12,11 +12,12 @@
 //	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 //}
 
+char user_name[200];
+char user_password[100];
+
 void InputData(void) {
 	MYSQL con = { 0 };
 	MYSQL* connection = NULL;
-	MYSQL_RES* result = NULL;
-	MYSQL_ROW row = { 0 };
 
 	mysql_init(&con);
 
@@ -27,9 +28,6 @@ void InputData(void) {
 		fprintf(stderr, "error: %s\n", mysql_error(&con));
 		_getch();
 	}
-	
-	char user_name[200];
-	char user_password[100];
 
 	printf("이름 입력: ");
 	scanf("%s", user_name);

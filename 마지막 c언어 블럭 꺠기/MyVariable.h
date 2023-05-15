@@ -18,3 +18,6 @@ extern int			g_nStageCount;		// 스테이지 카운터
 extern clock_t		g_GameStartTime, g_UpdateOldTime, g_RemainTime;
 extern int			g_nTotalGrade;		// 총점
 extern int			g_nBlockCount;		// 맞춘 벽돌
+
+extern char user_name[200];
+extern char user_password[100];

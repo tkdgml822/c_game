@@ -59,6 +59,11 @@ int UserData(void) {
 
 		return 0;
 	}
+	
+	/*mysql_query(connection, "Select user_score from user where user_score limit 1;");
+	result = mysql_store_result(connection);
+	row = mysql_fetch_row(result);
+	printf("%s", row[0]);*/
 
 	mysql_query(connection, "select * from user order by user_score desc limit 10;");
 	result = mysql_store_result(connection);

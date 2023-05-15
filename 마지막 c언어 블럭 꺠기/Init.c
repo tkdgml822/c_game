@@ -1,21 +1,57 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include "MyVariable.h"
+#include <mysql.h>
+
+#define DB_HOST "127.0.0.1"
+#define DB_USER "root"
+#define DB_PASS "abc123"
+#define DB_NAME "test"
 
 void Init() {
+	MYSQL con = { 0 };
+	MYSQL* connection = NULL;
+	MYSQL_RES* result = NULL;
+	MYSQL_ROW row = { 0 };
+
+
 	if (g_nStage == -1) {	//	스테이지가 -1 일경우
 
 		g_nStage = 0;		//	스테이지를 0으로 바꿈 
 
 	}
+	
+	// 초기화
+	mysql_init(&con);
 
-	// database가 추가되면 삭제 예정
-	FILE* file = fopen("score.dat", "rt");
-	if (file == 0) { g_nBestGrade = 0; }
-	else {
-		fscanf(file, "%d", &g_nBestGrade);
-		fclose(file);
+
+	// mysql 연결
+	connection = mysql_real_connect(&con, DB_HOST, DB_USER, DB_PASS, DB_NAME, 3306, NULL, 0);
+
+	if (connection == NULL) {
+		gotoxy(50, 1); fprintf(stderr, "error: %s\n", mysql_error(&con));
+		_getch();
+
+		return 0;
 	}
+
+	mysql_query(connection, "select user_score from user order by user_score desc limit 1;");
+
+	result = mysql_store_result(connection);
+
+	if ((row = mysql_fetch_row(result)) != NULL) {
+		g_nBestGrade = atoi(row[0]); // 결과를 정수로 변환하여 변수에 저장
+		printf("가장 높은 점수: %d\n", g_nBestGrade);
+		_getch();
+	}
+
+	//// database가 추가되면 삭제 예정
+	//FILE* file = fopen("score.dat", "rt");
+	//if (file == 0) { g_nBestGrade = 0; }
+	//else {
+	//	fscanf(file, "%d", &g_nBestGrade);
+	//	fclose(file);
+	//}
 
 
 	SetBlock(g_StageInfo[g_nStage].nBlockCount);			// 스테이지별 블럭의 갯수만큼 블럭을 세팅해준다.
