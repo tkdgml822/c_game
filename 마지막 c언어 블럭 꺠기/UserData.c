@@ -7,6 +7,7 @@
 #define DB_USER "root"
 #define DB_PASS "abc123"
 #define DB_NAME "test"
+#define DB_PORT 3306
 
 void gotoxy(int x, int y) {
 	COORD pos = { x,y };
@@ -51,7 +52,7 @@ int UserData(void) {
 	
 	mysql_init(&con); // 초기화
 
-	connection = mysql_real_connect(&con, DB_HOST, DB_USER, DB_PASS, DB_NAME, 3306, NULL, 0); // 연결
+	connection = mysql_real_connect(&con, DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT, NULL, 0); // 연결
 
 	if (connection == NULL) {
 		gotoxy(50, 1); fprintf(stderr, "error: %s\n", mysql_error(&con));
@@ -60,18 +61,14 @@ int UserData(void) {
 		return 0;
 	}
 	
-	/*mysql_query(connection, "Select user_score from user where user_score limit 1;");
-	result = mysql_store_result(connection);
-	row = mysql_fetch_row(result);
-	printf("%s", row[0]);*/
-
-	mysql_query(connection, "select * from user order by user_score desc limit 10;");
+	// 쿼리 보내기
+	mysql_query(connection, "select * from user order by user_score desc limit 10;"); // 내림차순으로 10개를 출력
 	result = mysql_store_result(connection);
 
 	gotoxy(0, 1); printf("▣       Name               score         ▣");
 	gotoxy(0, 2); printf("▣ ====================================== ▣");
 	while ((row = mysql_fetch_row(result)) != NULL) { // null이 아닐때 까지 읽어와라
-		gotoxy(8, i); printf("%s                %s\n", row[1], row[3]);
+		gotoxy(8, i); printf("%-9s           %-9s\n", row[1], row[3]);
 		i += 2;
 	}
 
