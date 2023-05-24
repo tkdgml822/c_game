@@ -28,3 +28,5 @@ int			g_nStageCount = 1;
 clock_t		g_GameStartTime, g_UpdateOldTime, g_RemainTime;
 int			g_nTotalGrade = 0;		// 총점
 int			g_nBlockCount = 0;		// 맞춘 벽돌
+char user_name[200];
+char user_password[100];
