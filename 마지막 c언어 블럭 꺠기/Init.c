@@ -14,6 +14,8 @@ void Init() {
 	MYSQL* connection = NULL;
 	MYSQL_RES* result = NULL;
 	MYSQL_ROW row = { 0 };
+
+	// 쿼리를 담을 배열
 	char sql[200];
 
 
@@ -27,6 +29,7 @@ void Init() {
 	// mysql 연결
 	connection = mysql_real_connect(&con, DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT, NULL, 0);
 
+	// 오류 문구
 	if (connection == NULL) {
 		gotoxy(50, 1); fprintf(stderr, "error: %s\n", mysql_error(&con));
 		_getch();
@@ -34,11 +37,16 @@ void Init() {
 		return 0;
 	}
 
+	// 쿼리 담기
 	sprintf(sql, "select user_score from user order by user_score desc limit 1;");
+
+	// 쿼리 보내기
 	mysql_query(connection, sql);
 
+	// 보낸 쿼리 결과 값 담기
 	result = mysql_store_result(connection);
 
+	// 점수 화면 출력
 	if ((row = mysql_fetch_row(result)) != NULL) {
 		g_nBestGrade = atoi(row[0]); // 결과를 정수로 변환하여 변수에 저장
 		init_interFace();
@@ -46,7 +54,8 @@ void Init() {
 		printf("현재 가장 높은 점수: %d\n", g_nBestGrade); // 가장 높은 점수 출력
 	}
 
-	SetBlock(g_StageInfo[g_nStage].nBlockCount);			// 스테이지별 블럭의 갯수만큼 블럭을 세팅해준다.
+	// 스테이지별 벽돌 확인
+	SetBlock(g_StageInfo[g_nStage].nBlockCount);			
 
 	// 공 초기화
 	g_sBall.nX = 19;										// 공의 x축 방향 19로 지정
@@ -57,8 +66,8 @@ void Init() {
 	g_sBall.nReady = 1;										// 준비 완료 상태
 	g_sBall.MoveTime = g_StageInfo[g_nStage].ball_MoveTime; // 스테이지별 공의 속도 지정
 
-	// Note: 막대기 초기화
-	g_sBar.nY = g_sBall.nY + 1;								// 막대기 y축 공의 바로 밑으로 초기화 
+	// 막대기 초기화
+	g_sBar.nY = g_sBall.nY + 1;								// 막대기 밑으로 초기화 
 	g_sBar.nX[0] = g_sBall.nX - 2;							// 막대기 왼쪽 공x 축 -2로 지정
 	g_sBar.nX[1] = g_sBall.nX;								// 막대기 중간 x 공 위치랑 똑같이 지정
 	g_sBar.nX[2] = g_sBall.nX + 2;							// 막대 오른쪽 공x 축 +2로 지정
