@@ -12,4 +12,4 @@ void SetBlock(int);			// 블럭 배치
 int Search(int, int, int);	// 블럭 중복 방지
 void UserData(void);			// 유저 데이터베이스 연결
 void InputData(void);		// 데이터 입력
-void SettingMenu(void);		// 메뉴
+int SettingMenu(void);		// 메뉴

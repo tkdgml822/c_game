@@ -10,28 +10,27 @@
 #define DB_NAME "test"
 #define DB_PORT 3306
 
-char user_name[200];
-char user_password[100];
-
+// 유저의 정보를 입력받는 함수
 void InputData(void) {
 	MYSQL con = { 0 };
 	MYSQL* connection = NULL;
 	MYSQL_RES* res;
 	MYSQL_ROW row;
 
+	// 초기
 	mysql_init(&con);
 
 	// 연결
 	connection = mysql_real_connect(&con, DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT, NULL, 0);
 
-	// 연결 실패
+	// 연결 확인
 	if (connection == NULL) {
 		fprintf(stderr, "error: %s\n", mysql_error(&con));
 		_getch();
 	}
 
 	// 쿼리를 받을 char형 문자열
-	char select[300];
+	char select[300];    
 	char insert[200];
 
 
@@ -91,8 +90,9 @@ void InputData(void) {
 	gotoxy(11, 22); printf("아무 키나 입력");
 	_getch();
 
+	// 화면 클리어
 	system("cls");
 
-	// DB 접속 종료
+	// 접속 종료
 	mysql_close(connection);
 }
