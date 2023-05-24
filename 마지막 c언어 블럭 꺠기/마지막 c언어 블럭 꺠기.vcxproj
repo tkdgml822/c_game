@@ -217,6 +217,7 @@
     <ClCompile Include="ResultScreen.c" />
     <ClCompile Include="RunningScreen.c" />
     <ClCompile Include="Interface.h" />
+    <ClCompile Include="SettingMenu.c" />
     <ClCompile Include="UserData.c" />
     <ClCompile Include="Search.c" />
     <ClCompile Include="SetBlock.c" />

@@ -80,5 +80,8 @@
     <ClCompile Include="InputData.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="SettingMenu.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

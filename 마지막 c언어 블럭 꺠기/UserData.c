@@ -14,7 +14,7 @@ void gotoxy(int x, int y) {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 
-void UserDate_show_data(void) {
+void init_interFace(void) {
 	gotoxy(0,  0); printf("▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣");
 	gotoxy(0,  1); printf("▣                                        ▣");
 	gotoxy(0,  2); printf("▣                                        ▣");
@@ -41,14 +41,15 @@ void UserDate_show_data(void) {
 	gotoxy(0, 23); printf("▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣");
 }
 
-int UserData(void) {
+void UserData(void) {
 	MYSQL con = { 0 };
 	MYSQL* connection = NULL;
 	MYSQL_RES* result = NULL;
 	MYSQL_ROW row = { 0 };
+	char sql[200];
 	int i = 3;
 
-	UserDate_show_data(); // 화면 출력
+	init_interFace(); // 화면 출력
 	
 	mysql_init(&con); // 초기화
 
@@ -60,9 +61,12 @@ int UserData(void) {
 
 		return 0;
 	}
-	
+
+	// 내림차순으로 9개를 출력 
+	sprintf(sql, "select * from user order by user_score desc limit 9;"); 
 	// 쿼리 보내기
-	mysql_query(connection, "select * from user order by user_score desc limit 10;"); // 내림차순으로 10개를 출력
+	mysql_query(connection, sql);
+	// 보낸 쿼리 값 받기
 	result = mysql_store_result(connection);
 
 	gotoxy(0, 1); printf("▣       Name               score         ▣");
@@ -77,6 +81,4 @@ int UserData(void) {
 	_getch(); // 키 받아오기
 
 	mysql_close(connection); // mysql 닫기
-
-	return 1;
 }
