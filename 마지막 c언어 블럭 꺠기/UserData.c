@@ -71,6 +71,7 @@ void UserData(void) {
 
 	gotoxy(0, 1); printf("▣       Name               score         ▣");
 	gotoxy(0, 2); printf("▣ ====================================== ▣");
+
 	while ((row = mysql_fetch_row(result)) != NULL) { // null이 아닐때 까지 읽어와라
 		gotoxy(8, i); printf("%-9s           %-9s\n", row[1], row[3]);
 		i += 2;
