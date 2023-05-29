@@ -10,7 +10,7 @@ extern int			g_StateTable[4][6];	// 벽과 충돌하게 되면 방향 상태
 extern int			g_BlockState[6];	// 블럭이 부딪혔을 때, 공의 방향을 변경하는데 사용되는 배열이다.
 extern BLOCK		g_sBlock[200];		// 블럭 200개 선언
 extern GAME_STATE	g_nGameState;		// 스테이지
-extern int			g_nIsSuccess;		
+extern int			g_nIsSuccess;
 extern int			g_nGrade;			// 점수
 extern int			g_nBestGrade;		// 최고점수
 extern int			g_nlastGrade;		// 마지막 점수
@@ -20,3 +20,7 @@ extern int			g_nTotalGrade;		// 총점
 extern int			g_nBlockCount;		// 맞춘 벽돌
 extern char user_name[200];
 extern char user_password[100];
+extern char login_name[100];
+extern int logging;
+extern int resultValue;
+extern char userScore[100];

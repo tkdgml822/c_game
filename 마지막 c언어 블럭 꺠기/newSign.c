@@ -12,7 +12,7 @@
 #define DB_PORT 3306
 
 // 유저의 정보를 입력받는 함수
-void InputData(void) {
+void newSign(void) {
 	MYSQL con = { 0 };
 	MYSQL* connection = NULL;
 	MYSQL_RES* res;

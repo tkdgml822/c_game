@@ -3,7 +3,7 @@
 STAGE_INFO  g_StageInfo[3] = {		 // STAGE_INFO의 구조체 배열을 초기화하는 코드입니다.
 	{  30,   1 * 100 * 1000  , 140 }, // { 벽돌의 개수, 남은 시간, 공의 속도 }
 	{  50,   2 * 100 * 1000 ,  100 },
-	{ 100,   3 * 100 * 1000 ,   60 }};
+	{ 100,   3 * 100 * 1000 ,   60 } };
 
 BAR  g_sBar;  // 막대기 구조체 선언
 BALL g_sBall; // 공 구조체 선언
@@ -30,3 +30,7 @@ int			g_nTotalGrade = 0;		// 총점
 int			g_nBlockCount = 0;		// 맞춘 벽돌
 char user_name[200];
 char user_password[100];
+char login_name[100];
+int logging; // 로그인 판단
+int resultValue = 0;
+char userScore[100];

@@ -42,6 +42,7 @@ void init_interFace(void) {
 }
 
 void UserData(void) {
+
 	MYSQL con = { 0 };
 	MYSQL* connection = NULL;
 	MYSQL_RES* result = NULL;

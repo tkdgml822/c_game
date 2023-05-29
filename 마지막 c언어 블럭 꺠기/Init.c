@@ -55,7 +55,7 @@ void Init() {
 	}
 
 	// 스테이지별 벽돌 확인
-	SetBlock(g_StageInfo[g_nStage].nBlockCount);			
+	SetBlock(g_StageInfo[g_nStage].nBlockCount);
 
 	// 공 초기화
 	g_sBall.nX = 19;										// 공의 x축 방향 19로 지정

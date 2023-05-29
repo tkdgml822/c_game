@@ -77,10 +77,25 @@
     <ClCompile Include="Interface.h">
       <Filter>헤더 파일</Filter>
     </ClCompile>
-    <ClCompile Include="InputData.c">
+    <ClCompile Include="newSign.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="SettingMenu.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="login.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="score_check.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="result_set.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="checkLogin_insertData.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="userBeatScore.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

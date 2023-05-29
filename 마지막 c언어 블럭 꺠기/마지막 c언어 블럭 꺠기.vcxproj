@@ -205,19 +205,24 @@
     <ClInclude Include="structure.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="checkLogin_insertData.c" />
     <ClCompile Include="Collision.c" />
     <ClCompile Include="FailureScreen.c" />
     <ClCompile Include="Init.c" />
     <ClCompile Include="InitScreen.c" />
-    <ClCompile Include="InputData.c" />
+    <ClCompile Include="newSign.c" />
+    <ClCompile Include="login.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="MyVariable.c" />
     <ClCompile Include="ReadyScreen.c" />
     <ClCompile Include="Render.c" />
     <ClCompile Include="ResultScreen.c" />
+    <ClCompile Include="result_set.c" />
     <ClCompile Include="RunningScreen.c" />
     <ClCompile Include="Interface.h" />
+    <ClCompile Include="score_check.c" />
     <ClCompile Include="SettingMenu.c" />
+    <ClCompile Include="userBeatScore.c" />
     <ClCompile Include="UserData.c" />
     <ClCompile Include="Search.c" />
     <ClCompile Include="SetBlock.c" />

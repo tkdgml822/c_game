@@ -7,13 +7,17 @@
 #define DB_USER "root"
 #define DB_PASS "abc123"
 #define DB_NAME "test"
+#define DB_PORT 3306
 
 // 화면 표시
 void Render() {
-	char string[100];			// 문자열
 	MYSQL con = { 0 };
 	MYSQL* connection = NULL;
+	MYSQL_RES* result;
+	MYSQL_ROW row;
 
+	char string[100];			// 문자열
+	
 	ScreenClear();				// 버퍼 삭제
 
 	switch (g_nGameState) {		// 현재 게임 상태
@@ -73,41 +77,18 @@ void Render() {
 		ScreenPrint(16, 4, string);											// 변경된 문자열 출력
 		break;																// 탈출
 
-	case RESULT:															// 결과
+	// 결과
+	case RESULT:
 		ResultScreen();														// 결과 화면
-		sprintf_s(string, sizeof(string), "%d", g_nGrade);					// 정수형변수(점수) 문자열로 변경
+		sprintf_s(string, sizeof(string), "%d", g_nGrade);					// 현 점수(g_nGrade) string 변수에다가 대입
 		ScreenPrint(25, 11, string);										// 변경된 문자열 출력
 		g_nlastGrade = g_nGrade;											// 현재 점수 마지막 점수에다가 대입
+		// 신규 회원일 경우
+		result_set();
+		
 
-		MYSQL con = { 0 };
-		MYSQL* connection = NULL;
-
-		mysql_init(&con);
-
-		connection = mysql_real_connect(&con, DB_HOST, DB_USER, DB_PASS, DB_NAME, 3306, NULL, 0);
-		if (connection == NULL) {
-			fprintf(stderr, "error: %s\n", mysql_error(&con));
-			_getch();
-			return;
-		}
-
-		char query[200];
-		sprintf(query, "UPDATE user SET user_score = %d WHERE user_name = '%s' AND user_password = '%s';", g_nlastGrade, user_name, user_password);
-		if (mysql_query(connection, query)) {
-			fprintf(stderr, "error: %s\n", mysql_error(connection));
-			_getch();
-			return;
-		}
-
-		printf("데이터가 성공적으로 입력되었습니다.\n");
-
-		if (g_nlastGrade > g_nBestGrade) {									// 이전까지의 최고 점수(g_nBestGrade)보다 새로운 점수(g_nlastGrade)가 높은지 확인합니다.
-			ScreenPrint(10, 13, "-------BEST SCORE !!-------");				// 화면에 메시지를 출력합니다.
-			g_nlastGrade = 0;												// 새로운 최고 점수를 기록한 후, 마지막 점수(g_nlastGrade)를 0으로 초기화합니다.
-		}
-
-		mysql_close(connection);
-		break;																// 탈출																// 탈출
+		resultValue = 1;			// 결과 값
+		break;
 	}
-	ScreenFlipping();														// 현재 사용 중인 콘솔 창 버퍼와 다음에 사용할 콘솔 창 버퍼를 번갈아가며 화면에 보여준다.(화면을 교체하는 역할)
+	ScreenFlipping();	// 현재 사용 중인 콘솔 창 버퍼와 다음에 사용할 콘솔 창 버퍼를 번갈아가며 화면에 보여준다.(화면을 교체하는 역할)
 }

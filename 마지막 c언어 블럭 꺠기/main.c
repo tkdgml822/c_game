@@ -20,12 +20,16 @@ int main(void) {
 	system("cls");
 	menu = SettingMenu();	// 메뉴 선택
 	if (menu == 1) {
-		InputData();		// 데이터 입력
+		newSign();		// 신규 가입
 	}
 	ScreenInit();			// 콘솔 화면 버퍼 초기화
 	Init();					// 초기 상태 : 막대기, 공, 블럭 세팅
 
 	while (1) {
+		if (resultValue == 1) {
+			break;
+		}
+
 		if (_kbhit()) {      // _kbhit() : 키가 눌렸는지 검사
 			nKey = _getch(); // _getch() : 키보드로 하나의 문자를 입력받는다.
 
@@ -115,8 +119,9 @@ int main(void) {
 					g_sBall.OldTime = clock();							// 현시간을 예전시간으로 
 				}
 				break;
-			case 'y':													// 소문자 'y' 눌렀을때
-			case 'Y':													// 대문자 'Y' 눌렀을때
+			// (Y / y) 을 누르시 초기화 및 재시작
+			case 'y':													
+			case 'Y':													
 				if (g_nGameState == FAILED) {							// 게임 상태 실패 변경
 					Init();												// 초기 상태로
 					g_nGameState = READY;								// 게임을 다시 준비 상태로
@@ -126,8 +131,9 @@ int main(void) {
 					g_UpdateOldTime = clock();							// 현시간을 예전시간으로
 				}
 				break;													// 탈출
-			case 'n':													// 소문자 'n' 눌렀을때
-			case 'N':													// 대문자 'N' 눌렀을때
+			// (N / n) 을 누르시 게임 종료
+			case 'n':													
+			case 'N':													
 				if (g_nGameState == FAILED) {							// 게임 상태 실패로 변경
 					g_nGameState = RESULT;								// 게임 상태 최종 결과로 변경
 				}
@@ -139,7 +145,22 @@ int main(void) {
 		Render();														// 현게임 상태에 따라 화면을 그리는 역할 
 	}
 
-	ScreenRelease();													// 콘솔 화면을 닫습니다.
-	return 0;
 	
+	
+
+	ScreenRelease();													// 콘솔 화면을 닫습니다.
+
+
+
+	char ang[2];
+	ScreenPrint(8, 15, "sdgffffffffffffffffff");
+	ScreenFlipping(); // 화면을 업데이트하여 출력
+	ScreenPrint(8, 16, "Enter your input: ");
+	ScreenFlipping(); // 화면을 업데이트하여 출력
+	fgets(ang, sizeof(ang), stdin);
+	if (logging == 1) {
+		checkLogin_insertData();
+	}
+	return 0;
+
 }
