@@ -1,32 +1,23 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "MyVariable.h"
 #include <stdio.h>
-#include <mysql.h>
-
-#define DB_HOST "127.0.0.1"
-#define DB_USER "root"
-#define DB_PASS "abc123"
-#define DB_NAME "test"
-#define DB_PORT 3306
 
 // 화면 표시
 void Render() {
-	MYSQL con = { 0 };
-	MYSQL* connection = NULL;
-	MYSQL_RES* result;
-	MYSQL_ROW row;
-
 	char string[100];			// 문자열
 	
-	ScreenClear();				// 버퍼 삭제
+	// 버퍼 삭제
+	ScreenClear();				
 
 	switch (g_nGameState) {		// 현재 게임 상태
-	case INIT:					// 초기 상태 
+	// 초기 상태 
+	case INIT:					
 		if (g_nStage == 0)		// 첫번째 맵일 경우
 			InitScreen();		// 게임 소개 인터페이스
 		break;					// 탈출
 
-	case READY:					// 준비상태
+	// 준비상태
+	case READY:					
 		ReadyScreen();			// 준비상태 인터페이스
 		sprintf_s(string, sizeof(string), "%d", g_nStage + 1); // 정수를 문자열로 변환 (스테이지)
 		ScreenPrint(13, 7, string);	// 바뀐 문자열 화면 출력
@@ -83,10 +74,10 @@ void Render() {
 		sprintf_s(string, sizeof(string), "%d", g_nGrade);					// 현 점수(g_nGrade) string 변수에다가 대입
 		ScreenPrint(25, 11, string);										// 변경된 문자열 출력
 		g_nlastGrade = g_nGrade;											// 현재 점수 마지막 점수에다가 대입
+
 		// 신규 회원일 경우
 		result_set();
 		
-
 		resultValue = 1;			// 결과 값
 		break;
 	}

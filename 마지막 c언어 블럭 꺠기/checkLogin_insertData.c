@@ -47,7 +47,7 @@ void checkLogin_insertData(void) {
 	}
 
 	// 나의 점수를 보여주고 데이터를 갱신 여부 물어보기
-		// userBestScore();
+	userBestScore();
 	printf("나의 점수는 %d입니다.\n", g_nlastGrade);
 	printf("데이터를 갱신하시겠습니까? (Y/N)\n");
 	_getch();

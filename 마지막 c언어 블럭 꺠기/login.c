@@ -47,7 +47,6 @@ void login(void) {
 		// 로그인 실패시 반복
 		if (mysql_query(connection, sql)) { // 성공시 0 반환.
 			fprintf(stderr, "error: %s\n", mysql_error(connection));
-			printf("로그인 오류! 아이디, 비밀번호를 다시 입력 해주느요!");
 			continue;
 		}
 		
@@ -63,6 +62,7 @@ void login(void) {
 			row = mysql_fetch_row(result);
 
 			if (row != NULL) {
+				gotoxy(13, 10);
 				printf("%s님! 환영합니다!", row[0]);
 				sprintf(login_name, "%s", row[0]); // 로그인시 사용되는 변수
 				logging = 1;
@@ -76,11 +76,13 @@ void login(void) {
 				}
 				result = mysql_store_result(connection);
 				row = mysql_fetch_row(result);
+
 				if (row != NULL) {
 					sprintf(userScore, "%s", row[0]);
 				}
 				else {
 					// row가 NULL인 경우에 대한 처리
+					printf("로그인 오류 다시 입력해주세요!");
 					// 예외 상황 또는 오류 처리를 수행해야 합니다.
 				}
 

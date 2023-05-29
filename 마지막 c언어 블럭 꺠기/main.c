@@ -26,6 +26,7 @@ int main(void) {
 	Init();					// 초기 상태 : 막대기, 공, 블럭 세팅
 
 	while (1) {
+		// 게임을 종류시 1이 들어가는  변수
 		if (resultValue == 1) {
 			break;
 		}
@@ -145,22 +146,12 @@ int main(void) {
 		Render();														// 현게임 상태에 따라 화면을 그리는 역할 
 	}
 
-	
-	
-
 	ScreenRelease();													// 콘솔 화면을 닫습니다.
 
-
-
-	char ang[2];
-	ScreenPrint(8, 15, "sdgffffffffffffffffff");
-	ScreenFlipping(); // 화면을 업데이트하여 출력
-	ScreenPrint(8, 16, "Enter your input: ");
-	ScreenFlipping(); // 화면을 업데이트하여 출력
-	fgets(ang, sizeof(ang), stdin);
-	if (logging == 1) {
+	// 로그인 중일때
+	if (logging == 1 && resultValue == 1) {
 		checkLogin_insertData();
 	}
-	return 0;
 
+	return 0;
 }

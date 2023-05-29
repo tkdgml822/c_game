@@ -43,6 +43,7 @@ int SettingMenu(void) {
 		gotoxy(13, 13);
 		printf("선택      : ");
 		scanf("%d", &choice);
+
 		if (choice > 3) {
 			printf("다시 입력해주세요");
 			continue;
