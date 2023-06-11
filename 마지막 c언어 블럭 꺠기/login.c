@@ -92,7 +92,5 @@ void login(void) {
 
 			}
 		}
-			
-
 	}
 }

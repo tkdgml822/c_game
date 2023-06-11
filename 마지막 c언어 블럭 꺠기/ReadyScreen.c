@@ -7,7 +7,7 @@ void ReadyScreen() {
 	ScreenPrint(0, 4, "▣                                        ▣");
 	ScreenPrint(0, 5, "▣                                        ▣");
 	ScreenPrint(0, 6, "▣                                        ▣");
-	ScreenPrint(0, 7, "▣              S t a g e                 ▣");
+	ScreenPrint(0, 7, "▣               스테이지                  ▣");
 	ScreenPrint(0, 8, "▣                                        ▣");
 	ScreenPrint(0, 9, "▣                                        ▣");
 	ScreenPrint(0, 10, "▣                                        ▣");

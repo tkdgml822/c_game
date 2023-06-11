@@ -11,9 +11,9 @@ void InitScreen(void) {
 	ScreenPrint(0, 6, "▣                                        ▣");
 	ScreenPrint(0, 7, "▣                                        ▣");
 	ScreenPrint(0, 8, "▣                                        ▣");
-	SetColor(13);
+	SetColor(13);                              
 	ScreenPrint(2, 6, "          ▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣             ");
-	ScreenPrint(2, 7, "          ▣ BROKE BLOCK ▣              ");
+	ScreenPrint(2, 7, "          ▣ 블럭   깨기 ▣              ");
 	ScreenPrint(2, 8, "          ▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣              ");
 	SetColor(7);
 	ScreenPrint(0, 9, "▣                                        ▣");
@@ -24,7 +24,7 @@ void InitScreen(void) {
 	ScreenPrint(0, 14, "▣                                        ▣");
 	ScreenPrint(0, 15, "▣                                        ▣");
 	ScreenPrint(0, 16, "▣                                        ▣");
-	ScreenPrint(0, 17, "▣    ★ START PRESS SPACE BAR PLZ!! ★     ▣");
+	ScreenPrint(0, 17, "▣      스페이스 바 클릭식 게임 시작 !      ▣");
 	ScreenPrint(0, 18, "▣                                        ▣");
 	ScreenPrint(0, 19, "▣                                        ▣");
 	ScreenPrint(0, 20, "▣                                        ▣");

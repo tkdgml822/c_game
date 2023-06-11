@@ -52,21 +52,48 @@ int SettingMenu(void) {
 			break;
 		}
 	}
-	 
+
 	// 신규 가입시 1 반환
 	if (choice == 1) {
+		mysql_close(connection);
 		return 1;
 	}
 	// 0을 입력시 점수 확인
 	else if (choice == 0) {
-		score_check();
+		score_check(); // 점수 확인
+
+		init_interFace();
+		gotoxy(13, 11);
+		printf("신규 가입 : 1");
+		gotoxy(13, 12);
+		printf("로그인    : 2");
+		gotoxy(13, 13);
+		printf("선택      : ");
+		scanf("%d", &choice);
+
+		if (choice == 1) {
+			mysql_close(connection);
+			return 1;
+		}
+		else if (choice == 0) {
+			login();
+			mysql_close(connection);
+			return;
+		}
+
+		return;
 	}
 	// 로그인 기능
 	else if (choice == 2) {
 		login();
+		mysql_close(connection);
+		return;
 	}
+
+
 
 	// 접속 종료
 	mysql_close(connection);
+
 	return;
 }

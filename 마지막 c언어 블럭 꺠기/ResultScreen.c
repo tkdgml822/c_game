@@ -7,11 +7,11 @@ void ResultScreen() {
 	ScreenPrint(0, 4, "▣                                        ▣");
 	ScreenPrint(0, 5, "▣                                        ▣");
 	ScreenPrint(0, 6, "▣                                        ▣");
-	ScreenPrint(0, 7, "▣  (((            Score           ))))   ▣");
+	ScreenPrint(0, 7, "▣  (((            점 수            ))))   ▣");
 	ScreenPrint(0, 8, "▣                                        ▣");
 	ScreenPrint(0, 9, "▣                                        ▣");
 	ScreenPrint(0, 10, "▣                                        ▣");
-	ScreenPrint(0, 11, "▣     TOTAL SCORE  :                     ▣");
+	ScreenPrint(0, 11, "▣     최종 점수     :                     ▣");
 	ScreenPrint(0, 12, "▣                                        ▣");
 	ScreenPrint(0, 13, "▣                                        ▣");
 	ScreenPrint(0, 14, "▣                                        ▣");

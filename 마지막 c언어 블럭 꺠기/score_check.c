@@ -30,6 +30,8 @@ void score_check(void) {
 	}
 
 	while (1) {
+		init_interFace();
+		gotoxy(13, 11);
 		printf("¾ÆÀÌµð :");
 		scanf("%s", user_name);
 
@@ -57,5 +59,4 @@ void score_check(void) {
 	}
 
 	mysql_close(connection);
-	return;
 }

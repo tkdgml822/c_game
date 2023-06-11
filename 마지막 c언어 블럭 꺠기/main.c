@@ -20,7 +20,7 @@ int main(void) {
 	system("cls");
 	menu = SettingMenu();	// 메뉴 선택
 	if (menu == 1) {
-		newSign();		// 신규 가입
+		newSign();			// 신규 가입
 	}
 	ScreenInit();			// 콘솔 화면 버퍼 초기화
 	Init();					// 초기 상태 : 막대기, 공, 블럭 세팅

@@ -17,6 +17,7 @@ int g_StateTable[4][6] = {
    { -1, -1,  1,  0,  5, -1 },
    { -1, -1, -1, -1,  2,  1 }
 };
+
 int			g_BlockState[6] = { 3, 2, 1, 0, 5, 4 }; // 블럭이 부딪혔을 때, 공의 방향을 변경하는데 사용되는 배열이다.
 BLOCK		g_sBlock[200]; // 블럭 200개 선언
 GAME_STATE	g_nGameState = INIT;
@@ -28,9 +29,9 @@ int			g_nStageCount = 1;
 clock_t		g_GameStartTime, g_UpdateOldTime, g_RemainTime;
 int			g_nTotalGrade = 0;		// 총점
 int			g_nBlockCount = 0;		// 맞춘 벽돌
-char user_name[200];
-char user_password[100];
-char login_name[100];
-int logging; // 로그인 판단
+char user_name[200];				// 유저 이름	
+char user_password[100];			// 유저 패스워드
+char login_name[100];				// 로그인
+int logging;						// 로그인 판단 여부
 int resultValue = 0;
 char userScore[100];
