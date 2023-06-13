@@ -44,6 +44,7 @@ int SettingMenu(void) {
 		printf("선택      : ");
 		scanf("%d", &choice);
 
+		// 잘못 입력시
 		if (choice > 3) {
 			printf("다시 입력해주세요");
 			continue;
@@ -75,7 +76,7 @@ int SettingMenu(void) {
 			mysql_close(connection);
 			return 1;
 		}
-		else if (choice == 0) {
+		else if (choice == 2) {
 			login();
 			mysql_close(connection);
 			return;
@@ -89,8 +90,6 @@ int SettingMenu(void) {
 		mysql_close(connection);
 		return;
 	}
-
-
 
 	// 접속 종료
 	mysql_close(connection);

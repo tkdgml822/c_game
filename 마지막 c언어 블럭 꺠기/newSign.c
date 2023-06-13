@@ -88,8 +88,7 @@ void newSign(void) {
 
 	// 입력 성공 문구
 	gotoxy(4, 20); printf("데이터가 성공적으로 입력되었습니다.\n");
-	gotoxy(11, 22); printf("아무 키나 입력");
-	Sleep(1000);
+	Sleep(2000);
 
 	// 화면 클리어
 	system("cls");

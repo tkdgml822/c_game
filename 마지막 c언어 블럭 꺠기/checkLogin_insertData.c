@@ -40,16 +40,19 @@ void checkLogin_insertData(void) {
 	// 보낸 쿼리 결과 값 담기
 	result = mysql_store_result(connection);
 
-	RunningScreen();
+	init_interFace();
 	
 	if ((row = mysql_fetch_row(result)) != NULL) {
-		printf("현재 가장 높은 점수: %d\n", g_nBestGrade); // 가장 높은 점수 출력
+		gotoxy(6, 8);
+		printf("랭킹 1위의 점수: %d\n", g_nBestGrade); // 가장 높은 점수 출력
 	}
 
 	// 나의 점수를 보여주고 데이터를 갱신 여부 물어보기
 	userBestScore();
+	gotoxy(6, 10);
 	printf("나의 점수는 %d입니다.\n", g_nlastGrade);
-	printf("데이터를 갱신하시겠습니까? (Y/N)\n");
+	gotoxy(6, 11);
+	printf("데이터를 갱신하시겠습니까? (Y/N) : ");
 	_getch();
 
 	// 갱신 여부 대답
@@ -65,12 +68,14 @@ void checkLogin_insertData(void) {
 			mysql_close(connection);
 			return;
 		}
+		gotoxy(6, 14);
 		printf("데이터 입력 성공!");
 
 		mysql_close(connection);
 		return;
 	}
 	else {
+		gotoxy(6, 14);
 		printf("데이터 갱신을 취소하셨습니다.");
 	}
 

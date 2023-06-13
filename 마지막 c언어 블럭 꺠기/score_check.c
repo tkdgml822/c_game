@@ -8,6 +8,7 @@
 #define DB_NAME "test"		// tablename
 #define DB_PORT 3306		// mySQLport
 
+//유저가 점수를 확인하는 함수입니다.
 void score_check(void) {
 	MYSQL con = { 0 };
 	MYSQL* connection = NULL;
@@ -52,6 +53,7 @@ void score_check(void) {
 			printf("없는 값 입니다. 다시 입력해주세요");
 		}
 		else {
+			gotoxy(4, 14);
 			printf("아이디 : %s 현재 점수: %s", user_name, row[0]);
 			Sleep(2000);
 			break;

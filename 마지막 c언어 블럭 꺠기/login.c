@@ -8,6 +8,7 @@
 #define DB_NAME "test"
 #define DB_PORT 3306
 
+// 로그인을 담당하는 함수
 void login(void) {
 	MYSQL con = { 0 };
 	MYSQL* connection = NULL;
@@ -62,7 +63,8 @@ void login(void) {
 			row = mysql_fetch_row(result);
 
 			if (row != NULL) {
-				gotoxy(13, 10);
+				
+				gotoxy(9, 10);
 				printf("%s님! 환영합니다!", row[0]);
 				sprintf(login_name, "%s", row[0]); // 로그인시 사용되는 변수
 				logging = 1;

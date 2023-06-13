@@ -24,7 +24,7 @@ void InitScreen(void) {
 	ScreenPrint(0, 14, "▣                                        ▣");
 	ScreenPrint(0, 15, "▣                                        ▣");
 	ScreenPrint(0, 16, "▣                                        ▣");
-	ScreenPrint(0, 17, "▣      스페이스 바 클릭식 게임 시작 !      ▣");
+	ScreenPrint(0, 17, "▣      스페이스 바 클릭식 게임 시작 !    ▣");
 	ScreenPrint(0, 18, "▣                                        ▣");
 	ScreenPrint(0, 19, "▣                                        ▣");
 	ScreenPrint(0, 20, "▣                                        ▣");

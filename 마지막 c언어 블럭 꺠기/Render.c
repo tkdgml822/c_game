@@ -59,7 +59,7 @@ void Render() {
 		SuccessScreen();													// 성공 인터페이스 출력
 		sprintf_s(string, sizeof(string), "%d Stage", g_nStage + 1);		// 정수형 스테이지변수 문자열로 변경 
 		ScreenPrint(19, 12, string);										// 변경된 문자열 출력
-		sprintf_s(string, sizeof(string), "총점: %d", g_nGrade);			// 정수형 점수 문자열로 변경
+		sprintf_s(string, sizeof(string), "총점: %d", g_nGrade);				// 정수형 점수 문자열로 변경
 		ScreenPrint(25, 16, string);										// 변경된 문자열 출력
 		break;																// 탈출
 	case FAILED:															// 실패시
@@ -75,8 +75,9 @@ void Render() {
 		ScreenPrint(25, 11, string);										// 변경된 문자열 출력
 		g_nlastGrade = g_nGrade;											// 현재 점수 마지막 점수에다가 대입
 
-		// 신규 회원일 경우
-		result_set();
+		if (newSignCheck == 1) { // 신규 가입자일 경우
+			result_set(); // 결과처리
+		}
 		
 		resultValue = 1;			// 결과 값
 		break;

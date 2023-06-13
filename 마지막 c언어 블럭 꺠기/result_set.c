@@ -33,13 +33,16 @@ void result_set(void) {
 		_getch();
 		return;
 	}
-
+	
+	gotoxy(5, 10);
 	printf("데이터가 성공적으로 입력되었습니다.\n");
 
 	if (g_nlastGrade > g_nBestGrade) {									// 이전까지의 최고 점수(g_nBestGrade)보다 새로운 점수(g_nlastGrade)가 높은지 확인합니다.
 		ScreenPrint(10, 13, "-------BEST SCORE !!-------");				// 화면에 메시지를 출력합니다.
 		g_nlastGrade = 0;												// 새로운 최고 점수를 기록한 후, 마지막 점수(g_nlastGrade)를 0으로 초기화합니다.
 	}
+
+	resultValue == 1;
 
 	// 연결 끊기
 	mysql_close(connection);

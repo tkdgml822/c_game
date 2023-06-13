@@ -9,6 +9,7 @@
 #define DB_NAME "test"
 #define DB_PORT 3306
 
+// 맵, 공, 막대기, 그리고 가장 높은 값을 알려준다.
 void Init() {
 	MYSQL con = { 0 };
 	MYSQL* connection = NULL;
@@ -37,7 +38,7 @@ void Init() {
 		return 0;
 	}
 
-	// 쿼리 담기
+	// 쿼리 담기 가장 큰 점수를 가져온다.
 	sprintf(sql, "select user_score from user order by user_score desc limit 1;");
 
 	// 쿼리 보내기
@@ -48,7 +49,7 @@ void Init() {
 
 	// 점수 화면 출력
 	if ((row = mysql_fetch_row(result)) != NULL) {
-		g_nBestGrade = atoi(row[0]); // 결과를 정수로 변환하여 변수에 저장
+		g_nBestGrade = atoi(row[0]); // 가져온 점수를 정수형으로 변환해서 저장
 		init_interFace();
 		gotoxy(8, 10);
 		printf("현재 가장 높은 점수: %d\n", g_nBestGrade); // 가장 높은 점수 출력

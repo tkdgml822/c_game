@@ -19,7 +19,8 @@ int main(void) {
 	UserData();				// 유저 데이터(순위)
 	system("cls");
 	menu = SettingMenu();	// 메뉴 선택
-	if (menu == 1) {
+	if (menu == 1) {		// 1일시 신규가입
+		newSignCheck = 1;	// 신규 가입 체크
 		newSign();			// 신규 가입
 	}
 	ScreenInit();			// 콘솔 화면 버퍼 초기화
@@ -84,7 +85,7 @@ int main(void) {
 				}
 				break;									// 탈출
 
-			case KEYUP: // 방향키 위쪽눌렀을때
+			case KEYUP: // 방향키 위쪽눌렀을때 공을 잡는 역할을 한다.
 				if (g_nGameState == RUNNING && g_sBall.nReady == 0) {	// 게임이 진행상태및 공이 진행 중일때
 					nX = g_sBall.nX;					// 현재의 공의 위치 저장 (x축)
 					nY = g_sBall.nY;					// 현재의 공의 위치 저장 (y축)
@@ -93,26 +94,26 @@ int main(void) {
 						if (nY == (g_sBar.nY - 1)) {	// 공과 막대기가 접한 경우
 							if ((nX >= g_sBar.nX[0] && nX <= (g_sBar.nX[2]))) { // 막대기 원쪽 부분과 오른쪽 부분 사이에 있으면
 								g_sBall.nReady = 1;		// 충돌한 경우 공의 상태를 1(ready)로 변경 - 공이 멈춤
-								break;					// 탈출
+								break;					
 							}
 						}
 					}
 				}
-				break;									// 탈출
+				break;									
 
 			case '1':													// 1을 눌렀을때	
 				if (g_nGameState == RUNNING && g_sBall.nReady == 1) {	// 게임이 진행상태 및 공이 준비상태일때
 					g_sBall.nDirect = RIGHT_TOP;						// 공을 오른쪽 대각선으로
 					g_sBall.OldTime = clock();							// 현시간을 예전시간으로
 				}
-				break;													// 탈출
+				break;													
 
 			case '2':													// 2을 눌렀을때									
 				if (g_nGameState == RUNNING && g_sBall.nReady == 1) {	// 게임이 진행상태 및 공이 준비상태일때
 					g_sBall.nDirect = TOP;								// 공을 위쪽으로
 					g_sBall.OldTime = clock();							// 현시간을 예전시간으로
 				}
-				break;													// 탈출	
+				break;													
 
 			case '3':													// 3을 눌렀을때
 				if (g_nGameState == RUNNING && g_sBall.nReady == 1) {	// 게임이 진행상태 및 공이 준비상태일때
@@ -131,14 +132,14 @@ int main(void) {
 					}
 					g_UpdateOldTime = clock();							// 현시간을 예전시간으로
 				}
-				break;													// 탈출
+				break;													
 			// (N / n) 을 누르시 게임 종료
 			case 'n':													
 			case 'N':													
 				if (g_nGameState == FAILED) {							// 게임 상태 실패로 변경
 					g_nGameState = RESULT;								// 게임 상태 최종 결과로 변경
 				}
-				break;													// 탈출 
+				break;													
 			}
 		}
 
@@ -148,8 +149,8 @@ int main(void) {
 
 	ScreenRelease();													// 콘솔 화면을 닫습니다.
 
-	// 로그인 중일때
-	if (logging == 1 && resultValue == 1) {
+	// 로그인 중일때, 결과값 1, 신규 가입은 Render()에서 따로 처리해줌
+	if (logging == 1 && resultValue == 1 && newSignCheck == 0) {
 		checkLogin_insertData();
 	}
 

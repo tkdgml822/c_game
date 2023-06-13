@@ -41,6 +41,7 @@ void init_interFace(void) {
 	gotoxy(0, 23); printf("▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣");
 }
 
+// 유저들의 랭킹을 보여줍니다.
 void UserData(void) {
 
 	MYSQL con = { 0 };

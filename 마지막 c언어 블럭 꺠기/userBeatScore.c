@@ -41,6 +41,7 @@ void userBestScore(void) {
 	result = mysql_store_result(connection);
 
 	if ((row = mysql_fetch_row(result)) != NULL) {
+		gotoxy(10, 8);
 		printf("현재 %s의 가장높은 점수 : %s\n",login_name, row[0]);
 	}
 
